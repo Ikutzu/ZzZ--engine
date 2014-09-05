@@ -1,0 +1,15 @@
+Grafiikkarajapinta  - Tuomo
+-lodePNG ja openGL välinen toiminta
+
+
+Debug / assertiot ja virheiden hallinta  - Taneli
+-perus throw/catch systeemi ja debug -login kirjoitus tiedostoon
+
+
+Ikkuna  - Mikael
+how does windows
+
+Tiedostonhallinta
+
+
+Resurssienhallinta
