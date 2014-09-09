@@ -1,9 +1,11 @@
 #include <windows.h>
-#include "GL/glew.h""
+#include "GL/glew.h"
+#include "lodepng.h"
 
 #pragma comment (lib, "opengl32.lib")
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+bool Lode_test(const std::string& file_in, const std::string& file_out);
 
 int WinMain(__in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance, __in_opt LPSTR lpCmdLine, __in int nShowCmd)
 {
@@ -76,7 +78,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			MessageBoxA(0, "2.1 SUPPORTED", "OPENGL VERSION", 0);
 		}
 
-		
+		//lodePNG test
+		if (Lode_test("lode_test_in.png", "lode_test_out.png"))
+			MessageBoxA(0, "test passed", "LodePNG test", 0);
+		else
+			MessageBoxA(0, "test failed", "LodePNG test", 0);
+
 
 		wglDeleteContext(hglrc);
 		PostQuitMessage(0);
@@ -88,4 +95,28 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	}
 	return 0;
 
+}
+
+
+
+//decodes and re-encodes an image
+bool Lode_test(const std::string& file_in, const std::string& file_out)
+{
+	std::vector<unsigned char> image;
+	unsigned w, h;
+	std::vector<unsigned char> buffer;
+	lodepng::State state;
+	unsigned error;
+
+	lodepng::load_file(buffer, file_in);
+	if (lodepng::decode(image, w, h, state, buffer))
+		return false;
+
+	buffer.clear();
+
+	if (lodepng::encode(buffer, image, w, h, state))
+		return false;
+	lodepng::save_file(buffer, file_out);
+
+	return true;
 }
