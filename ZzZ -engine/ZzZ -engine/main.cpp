@@ -1,32 +1,72 @@
+#ifndef WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN
+#endif
+
 #include <windows.h>
 #include "GL/glew.h"
 #include "lodepng.h"
 
 #pragma comment (lib, "opengl32.lib")
 
-LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+LRESULT CALLBACK wndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 bool Lode_test(const std::string& file_in, const std::string& file_out);
 
-int WinMain(__in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance, __in_opt LPSTR lpCmdLine, __in int nShowCmd)
-{
-	MSG msg = { 0 };
-	WNDCLASS wc = { 0 };
-	wc.lpfnWndProc = WndProc;
-	wc.hInstance = hInstance;
-	wc.hbrBackground = (HBRUSH)(COLOR_BACKGROUND);
-	wc.lpszClassName = L"oglversionchecksample";
-	wc.style = CS_OWNDC;
-	if (!RegisterClass(&wc))
-		return 1;
-	CreateWindowW(wc.lpszClassName, L"openglversioncheck", WS_OVERLAPPEDWINDOW | WS_VISIBLE, 0, 0, 640, 480, 0, 0, hInstance, 0);
+static HGLRC hglrc;
 
-	while (GetMessage(&msg, NULL, 0, 0) > 0)
+
+int main()
+{
+	WNDCLASSEX window;
+
+	window.cbSize = sizeof(window);
+	window.style = CS_OWNDC;
+	window.lpfnWndProc = wndProc;
+	window.cbClsExtra = 0;
+	window.cbWndExtra = 0;
+	window.hInstance = GetModuleHandle(nullptr);
+	window.hIcon = NULL;
+	window.hCursor = NULL;
+	window.hbrBackground = (HBRUSH)(COLOR_BACKGROUND + 1);
+	window.lpszMenuName = NULL;
+	window.lpszClassName = L"WindowClass";
+	window.hIconSm = NULL;
+
+	if (!RegisterClassEx(&window))
+	{
+		MessageBox(NULL, L"FAIL rekisteri", L"rekisteriFAIL", NULL);
+	}
+
+	RECT wRect;
+
+	wRect.top = 40;
+	wRect.left = 10;
+	wRect.right = 800;
+	wRect.bottom = 600;
+
+	AdjustWindowRectEx(&wRect, WS_CAPTION, false, WS_EX_LEFT);
+
+	HWND hWnd = CreateWindowEx(WS_EX_LEFT, L"WindowClass", L"Ikkuna", WS_CAPTION|WS_MINIMIZEBOX|WS_SYSMENU, wRect.left, wRect.top, wRect.right, wRect.bottom, NULL, NULL, window.hInstance, NULL);
+
+	ShowWindow(hWnd, SW_SHOWNORMAL);
+
+	MSG msg;
+
+	while (GetMessage(&msg, NULL, 0, 0))
+	{
+		TranslateMessage(&msg);
 		DispatchMessage(&msg);
+	}
+
+
+	UnregisterClass(L"WindowClass", window.hInstance);
+
+
 
 	return 0;
 }
 
-LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+
+LRESULT CALLBACK wndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	switch (message)
 	{
@@ -57,7 +97,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		int pixelCode = ChoosePixelFormat(hdc, &pfd);
 		SetPixelFormat(hdc, pixelCode, &pfd);
 
-		HGLRC hglrc = wglCreateContext(hdc);
+		hglrc = wglCreateContext(hdc);
 
 		wglMakeCurrent(hdc, hglrc);
 
@@ -66,6 +106,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		
 
 		GLenum err = glewInit();
+		/*
 		if (GLEW_OK != err)
 		{
 			return 1;
@@ -77,18 +118,18 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		{
 			MessageBoxA(0, "2.1 SUPPORTED", "OPENGL VERSION", 0);
 		}
+		*/
 
 		//lodePNG test
-		if (Lode_test("lode_test_in.png", "lode_test_out.png"))
-			MessageBoxA(0, "test passed", "LodePNG test", 0);
-		else
+		if (!Lode_test("lode_test_in.png", "lode_test_out.png"))
 			MessageBoxA(0, "test failed", "LodePNG test", 0);
 
-
+		break;
+	}
+	case WM_DESTROY:
+	{
 		wglDeleteContext(hglrc);
 		PostQuitMessage(0);
-
-		break;
 	}
 	default:
 		return DefWindowProc(hWnd, message, wParam, lParam);
