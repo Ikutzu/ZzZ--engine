@@ -215,3 +215,4 @@ pip-log.txt
 .mr.developer.cfg
 ZzZ -engine/ZzZ -engine/Log/DebugLog.txt
 ZzZ -engine/ZzZ -engine.v12.suo
+ZzZ -engine/ZzZ -engine/lode_test_out.png

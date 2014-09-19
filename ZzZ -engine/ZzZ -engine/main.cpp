@@ -51,11 +51,18 @@ int main()
 	ShowWindow(hWnd, SW_SHOWNORMAL);
 
 	MSG msg;
-
-	while (GetMessage(&msg, NULL, 0, 0))
+	bool running = true;
+	while (running)
 	{
-		TranslateMessage(&msg);
-		DispatchMessage(&msg);
+		while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE) != 0)
+		{
+			if (msg.message == WM_QUIT)
+			{
+				running = false;
+				break;
+			}
+			DispatchMessage(&msg);
+		}
 	}
 
 	Debugger::Print("All is well... for now!");
