@@ -28,13 +28,16 @@ void Debugger::Print(std::string debugString)
 
 	time_t perkele = time(0);
 
+	
+
 	if (outputFile)
 	{
 		outputFile << asctime(localtime(&perkele));
 		outputFile << debugString << std::endl;
 	}
-	outputFile.close();
-	
-	OutputDebugString(debugString.c_str());
 
+	debugString += "\n";
+
+	outputFile.close();
+	OutputDebugString(debugString.c_str());
 }
