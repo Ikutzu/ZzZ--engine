@@ -213,3 +213,5 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+ZzZ -engine/ZzZ -engine/Log/DebugLog.txt
+ZzZ -engine/ZzZ -engine.v12.suo

@@ -5,6 +5,7 @@
 #include <windows.h>
 #include "GL/glew.h"
 #include "lodepng.h"
+#include "debugger.h"
 
 #pragma comment (lib, "opengl32.lib")
 
@@ -57,6 +58,7 @@ int main()
 		DispatchMessage(&msg);
 	}
 
+	Debugger::Print("All is well... for now!");
 
 	UnregisterClass(L"WindowClass", window.hInstance);
 
