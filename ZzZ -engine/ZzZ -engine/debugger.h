@@ -5,6 +5,7 @@
 #include <string>
 #include <fstream>
 #include <time.h>
+#include <Windows.h>
 
 /*
 HOW_TO?
@@ -18,7 +19,7 @@ class Debugger
 {
 public:
 	static Debugger* Instance();
-	static void Print(std::string str);
+	static void Print(std::string debugString);
 protected:
 	Debugger();
 	~Debugger();

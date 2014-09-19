@@ -29,12 +29,12 @@ int main()
 	window.hCursor = NULL;
 	window.hbrBackground = (HBRUSH)(COLOR_BACKGROUND + 1);
 	window.lpszMenuName = NULL;
-	window.lpszClassName = L"WindowClass";
+	window.lpszClassName = "WindowClass";
 	window.hIconSm = NULL;
 
 	if (!RegisterClassEx(&window))
 	{
-		MessageBox(NULL, L"FAIL rekisteri", L"rekisteriFAIL", NULL);
+		MessageBox(NULL, "FAIL rekisteri", "rekisteriFAIL", NULL);
 	}
 
 	RECT wRect;
@@ -46,7 +46,7 @@ int main()
 
 	AdjustWindowRectEx(&wRect, WS_CAPTION, false, WS_EX_LEFT);
 
-	HWND hWnd = CreateWindowEx(WS_EX_LEFT, L"WindowClass", L"Ikkuna", WS_CAPTION|WS_MINIMIZEBOX|WS_SYSMENU, wRect.left, wRect.top, wRect.right, wRect.bottom, NULL, NULL, window.hInstance, NULL);
+	HWND hWnd = CreateWindowEx(WS_EX_LEFT, "WindowClass", "Ikkuna", WS_CAPTION|WS_MINIMIZEBOX|WS_SYSMENU, wRect.left, wRect.top, wRect.right, wRect.bottom, NULL, NULL, window.hInstance, NULL);
 
 	ShowWindow(hWnd, SW_SHOWNORMAL);
 
@@ -67,7 +67,7 @@ int main()
 
 	Debugger::Print("All is well... for now!");
 
-	UnregisterClass(L"WindowClass", window.hInstance);
+	UnregisterClass("WindowClass", window.hInstance);
 
 
 
