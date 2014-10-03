@@ -1,6 +1,9 @@
 
 #include "GameWindow.h"
 #include "debugger.h"
+#include "ResourceManager.h"
+
+void rmTest();
 
 int main()
 {
@@ -11,13 +14,28 @@ int main()
 	semmone.right = 800;
 
 	ZZZ::GameWindow testi = ZZZ::GameWindow::createWindow("testi ikkuna", semmone);
-
+	
+	rmTest();
+	
 	while (testi.running)
 	{
 		testi.update();
 	}
 
 	return 0;
+}
+
+
+void rmTest()
+{
+	ResourceManager* rm = new ResourceManager();
+	rm->load("eka");
+	rm->load("toka");
+	rm->load("kolmas");
+	for (int i = 0; i < 100; i++)
+		rm->load("vain yksi");
+	rm->debug();
+	delete rm;
 }
 
 //#ifndef WIN32_LEAN_AND_MEAN
