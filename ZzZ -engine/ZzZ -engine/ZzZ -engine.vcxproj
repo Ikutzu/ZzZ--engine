@@ -81,11 +81,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="debugger.cpp" />
+    <ClCompile Include="GameWindow.cpp" />
     <ClCompile Include="lodepng.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="debugger.h" />
+    <ClInclude Include="GameWindow.h" />
     <ClInclude Include="GL\glew.h" />
     <ClInclude Include="lodepng.h" />
   </ItemGroup>
