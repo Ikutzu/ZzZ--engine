@@ -92,6 +92,7 @@
     <ClInclude Include="GameWindow.h" />
     <ClInclude Include="GL\glew.h" />
     <ClInclude Include="lodepng.h" />
+    <ClInclude Include="Resource.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Shader.h" />
   </ItemGroup>
