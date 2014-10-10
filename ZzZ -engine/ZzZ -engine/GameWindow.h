@@ -2,8 +2,10 @@
 #define WINDOW_H
 
 #include <Windows.h>
+#include "GL\glew.h"
 
-namespace ZZZ{
+namespace ZZZ
+{
 
 	class GameWindow
 	{

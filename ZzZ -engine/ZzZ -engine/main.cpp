@@ -1,6 +1,7 @@
 
 #include "GameWindow.h"
 #include "debugger.h"
+#include "Shader.h"
 
 int main()
 {
@@ -11,7 +12,7 @@ int main()
 	semmone.right = 800;
 
 	ZZZ::GameWindow testi = ZZZ::GameWindow::createWindow("testi ikkuna", semmone);
-
+	
 	while (testi.running)
 	{
 		testi.update();

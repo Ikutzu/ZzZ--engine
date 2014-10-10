@@ -9,7 +9,7 @@
 
 /*
 HOW_TO?
-1. Use:Debugger::Print("your string here");
+1. Use: Debugger::Print("your string here");
 2. Read the file
 3. ?????
 4. Profit!
