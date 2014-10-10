@@ -2,6 +2,8 @@
 #include "GameWindow.h"
 #include "debugger.h"
 #include "Shader.h"
+#include "ResourceManager.h"
+
 
 int main()
 {

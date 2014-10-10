@@ -7,8 +7,10 @@ namespace ZZZ
 {
 	class Resource
 	{
+	public:
+		//virtual Resource* createResource();
+
 	protected:
-		virtual bool createResource(){ return true; }
 		std::string fileName;
 
 	};

@@ -1,7 +1,7 @@
 #include "ResourceManager.h"
 #include "debugger.h"
 using namespace std;
-
+using namespace ZZZ;
 
 /*
 void ResourceManager::initialize()
@@ -23,17 +23,16 @@ ResourceManager::~ResourceManager()
 }
 
 
-//return ?-pointer
-bool ResourceManager::load(string value)
+bool ResourceManager::loadTexture(Texture& r, std::string fileName)
 {
-	size_t hash = hasher(value);
+	size_t hash = hasher(fileName);
 
-	if (!find(value))
+	if (!find(hash))
 	{
-		map.insert(make_pair(hash, value));
-		//fileManager::loadFile(hash) ???
+		//r = Texture::createResource();
+		//map.insert(make_pair(hash, r));
 	}
-	return true;
+	return nullptr;
 }
 
 
@@ -48,11 +47,11 @@ void ResourceManager::debug()
 }
 
 
-bool ResourceManager::find(string value)
+bool ResourceManager::find(size_t hash)
 {
 	for (it = map.begin(); it != map.end(); it++)
 	{
-		if (hasher(value) == (*it).first)
+		if (hash == (*it).first)
 			return true;
 	}
 	return false;

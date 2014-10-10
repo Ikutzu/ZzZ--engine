@@ -4,27 +4,32 @@
 #include <map>
 #include <utility>
 #include <sstream>
-
+#include "Resource.h"
+#include "Texture.h"
 
 
 //TODO: singleton
-class ResourceManager
+namespace ZZZ
 {
-public:
-	ResourceManager();
-	~ResourceManager();
-	//void initialize();
+	class ResourceManager
+	{
+	public:
+		ResourceManager();
+		~ResourceManager();
+		//void initialize();
 
-	bool load(std::string name);
-	void debug();
+		bool loadTexture(Texture& r, std::string fileName);
+		//bool loadShader(Texture& r, std::string name);
+		void debug();
 
-private:
+	private:
 
-	bool find(std::string name);
+		bool find(size_t hash);
 
-	//ResourceManager* instance;
-	std::map<size_t, std::string> map;
-	std::map<size_t, std::string>::iterator it;
-	std::hash<std::string> hasher;
-};
+		//ResourceManager* instance;
+		std::map<size_t, Resource*> map;
+		std::map<size_t, Resource*>::iterator it;
+		std::hash<std::string> hasher;
+	};
+}
 
