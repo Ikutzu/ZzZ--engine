@@ -27,15 +27,15 @@ void SpriteManager::deleteSprite(std::string name)
 
 	void batchSprites();
 }
-void SpriteManager::batchSprites()
-{
-	std::sort(sprites.begin(), sprites.end(), SpriteSort);
-}
-
-bool SpriteManager::SpriteSort(Sprite& A, Sprite& B)
+bool SpriteSort(Sprite& A, Sprite& B)
 {
 	if (A.getDepth() == B.getDepth())
 		return A.getTexture() < B.getTexture();
 	else
 		return A.getDepth() < B.getDepth();
 }
+void SpriteManager::batchSprites()
+{
+	std::sort(sprites.begin(), sprites.end(), SpriteSort);
+}
+

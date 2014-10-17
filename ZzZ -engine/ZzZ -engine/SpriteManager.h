@@ -15,8 +15,7 @@ public:
 private:
 	std::vector<Sprite> sprites;
 
-	//spritejen patchaamiseen tarvittavat funktiot
-	bool SpriteSort(Sprite& a, Sprite &b);
+	//spritejen batchaaminen
 	void batchSprites();
 };
 
