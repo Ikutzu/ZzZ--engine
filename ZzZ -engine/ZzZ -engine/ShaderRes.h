@@ -1,5 +1,7 @@
 #pragma once
 #include "Resource.h"
+#include <fstream>
+#include <iostream>
 
 namespace ZZZ
 {
@@ -8,13 +10,16 @@ namespace ZZZ
 	public:
 		ShaderRes(std::string fn);
 		~ShaderRes();
+		
+
 
 		std::string getFullPath();
 		static std::string getFolder(){ return "Assets\\Shaders\\"; };
-		static std::string getFileType(){ return ".txt"; };
-
+		static std::string getFileType(){ return ".glsl"; };
+		std::string getShaderSource();
+		std::string loadFromFile(const char *filePath);
 	private:
-
+		std::string content;
 	};
 }
 
