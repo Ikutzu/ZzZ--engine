@@ -80,6 +80,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Buffer.cpp" />
     <ClCompile Include="debugger.cpp" />
     <ClCompile Include="GameWindow.cpp" />
     <ClCompile Include="lodepng.cpp" />
@@ -91,6 +92,7 @@
     <ClCompile Include="TextureRes.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Buffer.h" />
     <ClInclude Include="debugger.h" />
     <ClInclude Include="GameWindow.h" />
     <ClInclude Include="GL\glew.h" />
