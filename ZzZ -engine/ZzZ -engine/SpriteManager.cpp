@@ -9,9 +9,11 @@ SpriteManager::SpriteManager()
 SpriteManager::~SpriteManager()
 {
 }
-void SpriteManager::newSprite(std::string name, float width, float height)
+void SpriteManager::newSprite(std::string name, float width, float height, int depth)
 {
-	sprites.push_back(Sprite(name, width, height));
+	sprites.push_back(Sprite(name, width, height, depth));
+
+	void batchSprites();
 }
 void SpriteManager::deleteSprite(std::string name)
 {
@@ -22,4 +24,18 @@ void SpriteManager::deleteSprite(std::string name)
 
 		i--;
 	}
+
+	void batchSprites();
+}
+void SpriteManager::batchSprites()
+{
+	std::sort(sprites.begin(), sprites.end(), SpriteSort);
+}
+
+bool SpriteSort(const Sprite& A, const Sprite& B)
+{
+	if (A.getDepth == B.getDepth)
+		return A.getTexture < B.getTexture;
+	else
+		return A.getDepth < B.getDepth;
 }

@@ -1,15 +1,20 @@
 #pragma once
 #include <string.h>
 #include <stdio.h>
+#include <vector>
 #include "debugger.h"
 class Sprite
 {
 public:
-	Sprite(std::string spriteName, float width, float height);
+	Sprite(std::string spriteName, float width, float height, int layerDepth);
 	~Sprite();
 	void moveSprite(float x, float y);
 	void setPosition(float x, float y);
 	std::string getName();
+	void setTexture(std::vector<unsigned char> spriteTexture);
+	std::vector<unsigned char> getTexture();
+	int getDepth();
+
 private:
 
 
@@ -30,6 +35,8 @@ private:
 	*/
 	std::string name;
 	float vertices[28];
+	int depth;
+	std::vector<unsigned char> texture;
 
 };
 

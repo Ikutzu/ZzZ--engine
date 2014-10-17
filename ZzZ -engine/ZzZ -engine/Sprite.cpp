@@ -1,12 +1,12 @@
 #include "Sprite.h"
 
 
-Sprite::Sprite(std::string spriteName, float width, float height)
+Sprite::Sprite(std::string spriteName, float width, float height,int layerDepth)
 {
 	float base = 1;
 
 	name = spriteName;
-
+	depth = layerDepth;
 	vertices[0] = 0.0f; //x
 	vertices[1] = base * height; //y
 	vertices[2] = 1.0f; //red
@@ -84,4 +84,17 @@ void Sprite::setPosition(float x, float y)
 std::string Sprite::getName()
 {
 	return name;
+}
+void Sprite::setTexture(std::vector<unsigned char> spriteTexture)
+{
+	texture = spriteTexture;
+
+}
+int Sprite::getDepth()
+{
+	return depth;
+}
+std::vector<unsigned char> Sprite::getTexture()
+{
+	return texture;
 }
