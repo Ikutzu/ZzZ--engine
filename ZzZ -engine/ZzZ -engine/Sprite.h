@@ -6,13 +6,13 @@
 class Sprite
 {
 public:
-	Sprite(std::string spriteName, float width, float height, int layerDepth);
+	Sprite(std::string spriteName, float width, float height, int layerDepth, unsigned char* spriteTexture);
 	~Sprite();
 	void moveSprite(float x, float y);
 	void setPosition(float x, float y);
 	std::string getName();
-	void setTexture(std::vector<unsigned char> spriteTexture);
-	std::vector<unsigned char> getTexture();
+	void setTexture(unsigned char* spriteTexture);
+	unsigned char* getTexture();
 	int getDepth();
 
 private:
@@ -36,7 +36,7 @@ private:
 	std::string name;
 	float vertices[28];
 	int depth;
-	std::vector<unsigned char> texture;
+	unsigned char* texture;
 
 };
 

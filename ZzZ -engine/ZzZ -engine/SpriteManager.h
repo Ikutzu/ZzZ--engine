@@ -9,14 +9,14 @@ public:
 	~SpriteManager();
 
 	//Luo uusi sprite ja lis‰‰ se sprites vectoriin
-	void newSprite(std::string name, float width, float height, int depth);
+	void newSprite(std::string name, float width, float height, int depth, unsigned char* spriteTexture);
 	//K‰y sprites vectori l‰pi ja poista halutun nimiset spritet.
 	void deleteSprite(std::string name);
 private:
 	std::vector<Sprite> sprites;
 
 	//spritejen patchaamiseen tarvittavat funktiot
-	bool SpriteSort(const Sprite& a, const Sprite &b);
+	bool SpriteSort(Sprite& a, Sprite &b);
 	void batchSprites();
 };
 

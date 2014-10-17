@@ -1,7 +1,7 @@
 #include "Sprite.h"
 
 
-Sprite::Sprite(std::string spriteName, float width, float height,int layerDepth)
+Sprite::Sprite(std::string spriteName, float width, float height, int layerDepth, unsigned char* spriteTexture)
 {
 	float base = 1;
 
@@ -35,6 +35,7 @@ Sprite::Sprite(std::string spriteName, float width, float height,int layerDepth)
 	vertices[25] = 1.0f; //blue
 	vertices[26] = 1.0f; //tex x
 	vertices[27] = 0.0f; //tex y
+	texture = spriteTexture;
 }
 
 
@@ -85,7 +86,7 @@ std::string Sprite::getName()
 {
 	return name;
 }
-void Sprite::setTexture(std::vector<unsigned char> spriteTexture)
+void Sprite::setTexture(unsigned char* spriteTexture)
 {
 	texture = spriteTexture;
 
@@ -94,7 +95,7 @@ int Sprite::getDepth()
 {
 	return depth;
 }
-std::vector<unsigned char> Sprite::getTexture()
+unsigned char* Sprite::getTexture()
 {
 	return texture;
 }
