@@ -16,3 +16,9 @@ string TextureRes::getFullPath()
 {
 	return getFolder() + fileName + getFileType();
 }
+
+
+bool TextureRes::decodeImage()
+{
+	return !lodepng::decode(image, width, height, getFullPath());
+}

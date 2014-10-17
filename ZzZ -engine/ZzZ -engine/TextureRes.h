@@ -1,5 +1,7 @@
 #pragma once
 #include "Resource.h"
+#include "lodepng.h"
+#include <vector>
 
 namespace ZZZ
 {
@@ -13,8 +15,11 @@ namespace ZZZ
 		static std::string getFolder(){ return "Assets\\Textures\\"; };
 		static std::string getFileType(){ return ".png"; };
 
-	private:
+		bool decodeImage();
 
+	private:
+		std::vector<unsigned char> image;
+		unsigned width, height;
 	};
 }
 
