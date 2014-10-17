@@ -2,6 +2,7 @@
 #include "Resource.h"
 #include <fstream>
 #include <iostream>
+#include "debugger.h"
 
 namespace ZZZ
 {

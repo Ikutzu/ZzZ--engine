@@ -21,7 +21,7 @@ std::string ShaderRes::loadFromFile(const char *filePath)
 	std::ifstream fileStream(filePath, std::ios::in);
 
 	if (!fileStream.is_open()) {
-		printf("Filename is incorrect");
+		Debugger::Print("Filename is incorrect");
 		return "";
 	}
 
