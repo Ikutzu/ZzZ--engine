@@ -1,11 +1,7 @@
 #include "GameWindow.h"
 #include "Shader.h"
 #include "GL\glew.h"
-//#include "GL/glew.h"
-//
-//#pragma comment (lib, "opengl32.lib")
 
-//LRESULT CALLBACK GWSTUFF::wndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 using namespace ZZZ;
 
@@ -61,7 +57,13 @@ GameWindow::GameWindow(WNDCLASSEX& win, LPCSTR wName, RECT wClientCoord)
 	
 	GLenum err = glewInit();
 
-	ZZZ::Shader::newShader(nullptr, nullptr);
+	backgroundColor[0] = 0.0f;
+	backgroundColor[1] = 0.0f;
+	backgroundColor[2] = 0.0f;
+	backgroundColor[3] = 1.0f;
+
+	if (ZZZ::Shader::newShader(nullptr, nullptr))
+		Debugger::Print("Shader creation failed");
 }
 
 GameWindow& GameWindow::createWindow(LPCSTR wName, RECT wClientCoord)
@@ -98,15 +100,23 @@ void GameWindow::update()
 		DispatchMessage(&msg);
 	}
 
-	glClearColor(0.0f, 0.6f, 0.0f, 1.0f);
+	glClearColor(backgroundColor[0], backgroundColor[1], backgroundColor[2], backgroundColor[3]);
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	ZZZ::Shader::doSomething();
+	// kutsu juttuja
+	Shader::useShader();
 
 	SwapBuffers(hdc);
 
 }
 
+void GameWindow::setBackgroundColor(float red, float green, float blue)
+{
+	backgroundColor[0] = red;
+	backgroundColor[1] = green;
+	backgroundColor[2] = blue;
+	
+}
 
 LRESULT CALLBACK wndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {

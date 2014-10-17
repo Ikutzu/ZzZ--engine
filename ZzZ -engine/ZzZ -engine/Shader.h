@@ -12,7 +12,7 @@ namespace ZZZ
 	
 		static int newShader(GLchar* shaderSource, GLchar* fragmentSource);
 		
-		static void doSomething();
+		static void useShader();
 
 	private:
 
@@ -24,6 +24,8 @@ namespace ZZZ
 		static GLuint fragmentShader;
 		static GLint positionIndex;
 		static GLint colorIndex;
+		static GLint texIndex;
+		static GLint projectionLocation;
 	};
 }
 

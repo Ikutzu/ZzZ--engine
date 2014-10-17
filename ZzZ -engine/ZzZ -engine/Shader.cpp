@@ -1,4 +1,6 @@
 #include "Shader.h"
+#include "glm\glm.hpp"
+#include "glm\gtc\matrix_transform.hpp"
 
 using namespace ZZZ;
 
@@ -8,26 +10,35 @@ GLuint Shader::vertexShader;
 GLuint Shader::fragmentShader;
 GLint Shader::positionIndex;
 GLint Shader::colorIndex;
+GLint Shader::texIndex;
+GLint Shader::projectionLocation;
 
 
 static const GLchar*  VERTEX_SOURCE =
 "attribute vec2 attrPosition;\n"
 "attribute vec3 attrColor;\n"
+"attribute vec2 attrTexture;\n"
 
-//"varying vec3 varyColor;\n"
+"uniform mat4 unifProjection;\n"
+
+"varying vec3 varyColor;\n"
+"varying vec2 textureCoords;\n"
 
 "void main(void)\n"
 "{\n"
-//"	varyColor = attrColor;\n"
-//"	gl_Position = vec4(attrPosition, 0.0, 1.0);\n"
+"	textureCoords = attrTexture;\n"
+"	varyColor = attrColor;\n"
+"	gl_Position = unifProjection * vec4(attrPosition, 0.0, 1.0);\n"
 "}\n";
 
 static const GLchar*  FRAGMENT_SOURCE =
-//"varying vec3 varyColor;\n"
+"varying vec3 varyColor;\n"
+"varying vec2 textureCoords;\n"
+"uniform sampler2D sampleri;\n"
 
 "void main (void)\n"
 "{\n"
-//"	gl_FragColor = vec4(varyColor, 1.0);\n"
+"	gl_FragColor = texture(sampleri, textureCoords) + vec4(varyColor, 0.0);\n"
 "}\n";
 
 int Shader::newShader(GLchar* vertexSource, GLchar* fragmentSource) // [shader]Source == null -> default
@@ -93,12 +104,44 @@ int Shader::newShader(GLchar* vertexSource, GLchar* fragmentSource) // [shader]S
 			Debugger::Print("Missing 'attrColor' from vertex shader.");
 			return 1;
 		}
+		texIndex = glGetAttribLocation(program, "attrTexture");
+		if (texIndex < 0)
+		{
+			Debugger::Print("Missing 'attrTexture' from vertex shader.");
+			return 1;
+		}
+		projectionLocation = glGetUniformLocation(program, "unifProjection");
+		if (projectionLocation < 0)
+		{
+			Debugger::Print("Missing 'unifProjection' from vertex shader.");
+			return 1;
+		}
 	}
+
+	glEnableVertexAttribArray(positionIndex);
+	glEnableVertexAttribArray(colorIndex);
+	glEnableVertexAttribArray(texIndex);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	glm::mat4 projection = glm::ortho(0.0f, 800.0f, 600.0f, 0.0f, -1.0f, 1.0f);
+
+	glUseProgram(program);
+
+	glUniformMatrix4fv(projectionLocation, 1, GL_FALSE, reinterpret_cast<float*>(&projection));
+
+	glUseProgram(0u);
+
 	return 0;
 }
 
-void Shader::doSomething()
+void Shader::useShader()
 {
-	glVertexAttribPointer(positionIndex, 2u, GL_FLOAT, GL_FALSE, 20u, reinterpret_cast<GLvoid*>(0u));
-	glVertexAttribPointer(colorIndex, 3u, GL_FLOAT, GL_FALSE, 20u, reinterpret_cast<GLvoid*>(8u));
+	glVertexAttribPointer(positionIndex, 2u, GL_FLOAT, GL_FALSE, 28u, reinterpret_cast<GLvoid*>(0u));
+	glVertexAttribPointer(colorIndex, 3u, GL_FLOAT, GL_FALSE, 28u, reinterpret_cast<GLvoid*>(8u));
+	glVertexAttribPointer(texIndex, 2u, GL_FLOAT, GL_FALSE, 28u, reinterpret_cast<GLvoid*>(20u));
 }

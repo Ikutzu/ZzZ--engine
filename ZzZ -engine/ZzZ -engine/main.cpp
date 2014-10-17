@@ -14,7 +14,8 @@ int main()
 	semmone.right = 800;
 
 	ZZZ::GameWindow testi = ZZZ::GameWindow::createWindow("testi ikkuna", semmone);
-	
+	testi.setBackgroundColor(0.0f, 0.5f, 0.0f);
+
 	while (testi.running)
 	{
 		testi.update();
