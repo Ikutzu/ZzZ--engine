@@ -3,10 +3,15 @@
 #include "debugger.h"
 #include "Shader.h"
 #include "ResourceManager.h"
+#include <sstream>
 
+static const int RM_TEST_SIZE = 50;
+void ResourceManagerTest();
 
 int main()
 {
+	ResourceManagerTest();
+
 	RECT semmone;
 	semmone.left = 40;
 	semmone.top = 40;
@@ -23,6 +28,24 @@ int main()
 
 	return 0;
 }
+
+
+//logiin pitaisi tulla 2*RM_TEST_SIZE kpl resursseja
+void ResourceManagerTest()
+{
+	ZZZ::ResourceManager rm = ZZZ::ResourceManager();
+	ZZZ::TextureRes* t[RM_TEST_SIZE];
+	ZZZ::ShaderRes* s[RM_TEST_SIZE];
+	for (int i = 0; i < RM_TEST_SIZE; i++)
+	{
+		std::ostringstream ss;
+		ss << i;
+		t[i] = rm.load<ZZZ::TextureRes>(ss.str());
+		s[i] = rm.load<ZZZ::ShaderRes>(ss.str());
+	}
+	rm.printAll();
+}
+
 
 //#ifndef WIN32_LEAN_AND_MEAN
 //#define WIN32_LEAN_AND_MEAN

@@ -1,35 +1,57 @@
 #pragma once
-#include <functional>
+#include "ShaderRes.h"
+#include "TextureRes.h"
 #include <string>
 #include <map>
-#include <utility>
 #include <sstream>
-#include "Resource.h"
-#include "Texture.h"
 
 
 //TODO: singleton
 namespace ZZZ
 {
+	/*
+	* How to load:
+	* Texture* tex = rm.load<TextureRes>(filename_without_extension);
+	*/
 	class ResourceManager
 	{
 	public:
 		ResourceManager();
 		~ResourceManager();
-		//void initialize();
 
-		bool loadTexture(Texture& r, std::string fileName);
-		//bool loadShader(Texture& r, std::string name);
-		void debug();
+		void printAll();
+
+		template<typename T>T* load(std::string fileName);
+		template<typename T>T* find(size_t hash);
 
 	private:
-
-		bool find(size_t hash);
-
-		//ResourceManager* instance;
-		std::map<size_t, Resource*> map;
-		std::map<size_t, Resource*>::iterator it;
-		std::hash<std::string> hasher;
+		typedef std::map<size_t, Resource*> mapType;
+		mapType storage;
 	};
+
+	template<typename T>
+	T* ResourceManager::load(std::string fileName)
+	{
+		std::hash<std::string> hasher;
+		size_t hash = hasher(T::getFolder() + fileName);
+		T* obj = find<T>(hash);
+		if (obj == nullptr)
+		{
+			obj = new T(fileName);
+			storage.insert(std::make_pair(hash, obj));
+		}
+		return obj;
+	}
+
+
+	template<typename T>
+	T* ResourceManager::find(size_t hash)
+	{
+		mapType::iterator it = storage.find(hash);
+		if (it == storage.end())
+			return nullptr;
+		else
+			return static_cast<T*>(it->second);
+	}
 }
 

@@ -84,9 +84,11 @@
     <ClCompile Include="GameWindow.cpp" />
     <ClCompile Include="lodepng.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Resource.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Shader.cpp" />
-    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="ShaderRes.cpp" />
+    <ClCompile Include="TextureRes.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="debugger.h" />
@@ -96,7 +98,9 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="ShaderRes.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="TextureRes.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

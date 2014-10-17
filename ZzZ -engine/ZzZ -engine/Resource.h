@@ -1,6 +1,4 @@
-#ifndef RESOURCE_H
-#define RESOURCE_H
-
+#pragma once
 #include <string>
 
 namespace ZZZ
@@ -8,12 +6,15 @@ namespace ZZZ
 	class Resource
 	{
 	public:
-		//virtual Resource* createResource();
+		Resource();
+		Resource(std::string fn);
+		~Resource();
+
+		std::string getFileName();
+		virtual std::string getFullPath() = 0;
 
 	protected:
 		std::string fileName;
-
 	};
 }
 
-#endif
