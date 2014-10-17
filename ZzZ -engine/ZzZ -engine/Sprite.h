@@ -5,10 +5,11 @@
 class Sprite
 {
 public:
-	Sprite(float width, float height);
+	Sprite(std::string spriteName, float width, float height);
 	~Sprite();
 	void moveSprite(float x, float y);
 	void setPosition(float x, float y);
+	std::string getName();
 private:
 
 
@@ -27,7 +28,7 @@ private:
 	vertex 2	vertex 4
 	vertex 1	vertex 3
 	*/
-
+	std::string name;
 	float vertices[28];
 
 };

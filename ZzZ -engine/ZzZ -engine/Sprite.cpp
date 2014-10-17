@@ -1,9 +1,12 @@
 #include "Sprite.h"
 
 
-Sprite::Sprite(float width, float height)
+Sprite::Sprite(std::string spriteName, float width, float height)
 {
 	float base = 1;
+
+	name = spriteName;
+
 	vertices[0] = 0.0f; //x
 	vertices[1] = base * height; //y
 	vertices[2] = 1.0f; //red
@@ -77,4 +80,8 @@ void Sprite::setPosition(float x, float y)
 	vertices[8] += y;
 	vertices[15] += y;
 	vertices[22] += y;
+}
+std::string Sprite::getName()
+{
+	return name;
 }
