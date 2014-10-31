@@ -2,19 +2,23 @@
 
 using namespace ZZZ;
 
-
-void Buffer::createBuffer(unsigned size, type bufferType)
+void Buffer::createBuffer(bufferType type)
 {
-	if (bufferType == VERTEX)
+	this->type = type;
+
+	glGenBuffers(1, &index);
+}
+
+void Buffer::pushData(unsigned size, void *data)
+{
+	if (type == ZZZVERTEX)
 	{
-		glGenBuffers(1, &index);
 		glBindBuffer(GL_ARRAY_BUFFER, index);
 		glBufferData(GL_ARRAY_BUFFER, size, &data, GL_STATIC_DRAW);
 		glBindBuffer(GL_ARRAY_BUFFER, 0u);
 	}
-	if (bufferType == INDEX)
+	if (type == ZZZINDEX)
 	{
-		glGenBuffers(1, &index);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, index);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, &data, GL_STATIC_DRAW);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0u);

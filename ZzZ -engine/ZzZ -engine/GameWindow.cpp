@@ -1,11 +1,11 @@
 #include "GameWindow.h"
 #include "Shader.h"
-#include "GL\glew.h"
+//#include "GL\glew.h"
 
 
 using namespace ZZZ;
 
-GameWindow GameWindow::wStack[];
+GameWindow* GameWindow::wStack[];
 LRESULT CALLBACK wndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 GameWindow::GameWindow(WNDCLASSEX& win, LPCSTR wName, RECT wClientCoord)
@@ -62,8 +62,12 @@ GameWindow::GameWindow(WNDCLASSEX& win, LPCSTR wName, RECT wClientCoord)
 	backgroundColor[2] = 0.0f;
 	backgroundColor[3] = 1.0f;
 
-	if (ZZZ::Shader::newShader(nullptr, nullptr))
+	if (Shader::newShader(nullptr, nullptr))
 		Debugger::Print("Shader creation failed");
+
+	verticeBuffer.createBuffer(ZZZVERTEX);
+	indexBuffer.createBuffer(ZZZINDEX);
+		
 }
 
 GameWindow& GameWindow::createWindow(LPCSTR wName, RECT wClientCoord)
@@ -83,9 +87,9 @@ GameWindow& GameWindow::createWindow(LPCSTR wName, RECT wClientCoord)
 	window.lpszClassName = "GameWindowClass";
 	window.hIconSm = NULL;
 
-	wStack[0] = GameWindow(window, wName, wClientCoord);
+	wStack[0] = new GameWindow(window, wName, wClientCoord);
 
-	return wStack[0];
+	return *wStack[0];
 }
 
 void GameWindow::update()
@@ -103,7 +107,7 @@ void GameWindow::update()
 	glClearColor(backgroundColor[0], backgroundColor[1], backgroundColor[2], backgroundColor[3]);
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	// kutsu juttuja
+	// kutsu juttuja esim buffer.pushData ja piirrot
 	Shader::useShader();
 
 	SwapBuffers(hdc);

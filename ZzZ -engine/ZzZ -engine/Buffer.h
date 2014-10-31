@@ -5,26 +5,27 @@
 
 namespace ZZZ
 {
+	enum bufferType
+	{
+		ZZZVERTEX,
+		ZZZINDEX
+	};
+
 	class Buffer
 	{		
 	public:
 		
-		enum type
-		{
-			VERTEX,
-			INDEX
-		};
+	
+		void createBuffer(bufferType type);
+		void pushData(unsigned size, void *data);
 
-		void createBuffer(unsigned size, type bufferType);
-		  
-		type getType(){ return bufferType; }
+		bufferType getType(){ return type; }
 		GLuint getIndex(){ return index; }
 
 	protected:
 
-		GLfloat *data;
 		GLuint index;
-		type bufferType;
+		bufferType type;
 
 	};
 }

@@ -2,6 +2,7 @@
 #define WINDOW_H
 
 #include <Windows.h>
+#include "Buffer.h"
 #include "GL\glew.h"
 
 namespace ZZZ
@@ -13,6 +14,7 @@ namespace ZZZ
 
 		GameWindow(){ hWnd = nullptr; hInstance = nullptr; }
 		~GameWindow(){ UnregisterClass("GameWindowClass", hInstance); }
+
 		static GameWindow& createWindow(LPCSTR wName, RECT wClientCoord);
 
 		void setBackgroundColor(float red, float green, float blue);
@@ -22,10 +24,10 @@ namespace ZZZ
 
 	private:
 
-
+		
 		GameWindow(WNDCLASSEX& win, LPCSTR wName, RECT wClientCoord);
 
-		static GameWindow wStack[1];
+		static GameWindow* wStack[1];
 
 		float backgroundColor[4];
 
@@ -34,6 +36,10 @@ namespace ZZZ
 		HGLRC hglrc;
 		HINSTANCE hInstance;
 		MSG msg;
+
+
+		Buffer verticeBuffer;
+		Buffer indexBuffer;
 
 	};
 
