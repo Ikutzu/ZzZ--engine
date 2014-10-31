@@ -13,7 +13,7 @@ public:
 	//Käy sprites vectori läpi ja poista halutun nimiset spritet.
 	void deleteSprite(std::string name);
 private:
-	std::vector<Sprite> sprites;
+	std::vector<Sprite*> sprites;
 
 	//spritejen batchaaminen
 	void batchSprites();
