@@ -15,11 +15,16 @@ namespace ZZZ
 		static std::string getFolder(){ return "Assets\\Textures\\"; };
 		static std::string getFileType(){ return ".png"; };
 
-		bool decodeImage();
+		unsigned char* getTexture(){ return texture; };
+		unsigned getWidth(){ return width; };
+		unsigned getHeight(){ return height; };
+		unsigned getSize(){ return size; };
 
 	private:
-		std::vector<unsigned char> image;
-		unsigned width, height;
+		unsigned char* texture;
+		unsigned width, height, size;
+
+		bool decodeImage();
 	};
 }
 
