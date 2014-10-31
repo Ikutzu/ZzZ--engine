@@ -35,6 +35,7 @@ private:
 	*/
 	std::string name;
 	float vertices[28];
+	unsigned int indices[4];
 	int depth;
 	unsigned char* texture;
 

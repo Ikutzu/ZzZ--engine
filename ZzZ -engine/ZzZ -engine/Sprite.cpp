@@ -36,6 +36,12 @@ Sprite::Sprite(std::string spriteName, float width, float height, int layerDepth
 	vertices[26] = 1.0f; //tex x
 	vertices[27] = 0.0f; //tex y
 	texture = spriteTexture;
+
+	indices[0] = 0;
+	indices[1] = 1;
+	indices[2] = 2;
+	indices[3] = 3;
+
 }
 
 
