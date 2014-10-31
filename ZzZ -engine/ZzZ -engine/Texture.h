@@ -1,18 +1,21 @@
-#pragma once
-#include "Resource.h"
+#ifndef TEXTURE_H
+#define TEXTURE_H
+
+#include "GL\glew.h"
+#include "TextureRes.h"
 
 namespace ZZZ
 {
-	class Texture : public Resource
+	class Texture
 	{
 	public:
-		//Texture* createResource();
+		void createTexture(TextureRes* resource);
+
+		GLuint* getIndex(){ return &index; };
 
 	private:
-		Texture();
-		~Texture();
-
+		GLuint index;
 
 	};
 }
-
+#endif
