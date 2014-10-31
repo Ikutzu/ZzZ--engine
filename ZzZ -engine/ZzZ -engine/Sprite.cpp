@@ -1,10 +1,11 @@
 #include "Sprite.h"
 
 
-Sprite::Sprite(std::string spriteName, float width, float height, int layerDepth, unsigned char* spriteTexture)
+Sprite::Sprite(std::string spriteName, float spriteWidth, float spriteHeight, int layerDepth, unsigned char* spriteTexture)
 {
 	float base = 1;
-
+	width = spriteWidth;
+	height = spriteHeight;
 	name = spriteName;
 	depth = layerDepth;
 	vertices[0] = 0.0f; //x
@@ -42,6 +43,9 @@ Sprite::Sprite(std::string spriteName, float width, float height, int layerDepth
 	indices[2] = 2;
 	indices[3] = 3;
 
+	originX = width / 2;
+	originY = height / 2;
+
 }
 
 
@@ -61,14 +65,15 @@ void Sprite::moveSprite(float x, float y)
 	vertices[8] += y;
 	vertices[15] += y;
 	vertices[22] += y;
+
+	originX += x;
+	originY += y;
 }
 void Sprite::setPosition(float x, float y)
 {
 	// How does it work?
 	// set position to 0.0
 	// then set position to wanted values;
-	float relativity1 = vertices[0];
-	float relativity2 = vertices[22];
 
 	vertices[0] -= vertices[0];
 	vertices[7] -= vertices[0];
@@ -78,6 +83,8 @@ void Sprite::setPosition(float x, float y)
 	vertices[8] -= vertices[22];
 	vertices[15] -= vertices[22];
 	vertices[22] -= vertices[22];
+	originX -= vertices[0];
+	originY -= vertices[22];
 
 	vertices[0] += x;
 	vertices[7] += x;
@@ -87,7 +94,22 @@ void Sprite::setPosition(float x, float y)
 	vertices[8] += y;
 	vertices[15] += y;
 	vertices[22] += y;
+	originX += x;
+	originY += y;
 }
+void Sprite::setScale(float spriteScale)
+{
+	scale = spriteScale;
+	float tempWidth = width*scale;
+	float tempHeight = height*scale;
+	vertices[1] = scale * height; //y
+
+	vertices[14] = scale * width; //x
+	vertices[15] = scale * height; //y
+
+	vertices[21] = scale * width; //x
+}
+
 std::string Sprite::getName()
 {
 	return name;

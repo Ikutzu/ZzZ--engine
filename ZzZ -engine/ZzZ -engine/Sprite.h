@@ -6,10 +6,13 @@
 class Sprite
 {
 public:
-	Sprite(std::string spriteName, float width, float height, int layerDepth, unsigned char* spriteTexture);
+	Sprite(std::string spriteName, float spriteWidth, float spriteHeight, int layerDepth, unsigned char* spriteTexture);
 	~Sprite();
 	void moveSprite(float x, float y);
 	void setPosition(float x, float y);
+	void setScale(float spriteScale);
+	void rotate(float angleInDegrees);
+	void setRotation(float angleInDegrees);
 	std::string getName();
 	void setTexture(unsigned char* spriteTexture);
 	unsigned char* getTexture();
@@ -38,6 +41,9 @@ private:
 	unsigned int indices[4];
 	int depth;
 	unsigned char* texture;
+	float scale;
+	float width, height;
+	float originX, originY;
 
 };
 
