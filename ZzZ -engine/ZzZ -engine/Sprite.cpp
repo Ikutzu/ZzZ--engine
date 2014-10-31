@@ -109,6 +109,70 @@ void Sprite::setScale(float spriteScale)
 
 	vertices[21] = scale * width; //x
 }
+void Sprite::rotate(float angleInDegrees)
+{
+	float rotationMatrix[2][2] = { { cosf(angleInDegrees), sinf(angleInDegrees) }, { -sinf(angleInDegrees), cosf(angleInDegrees) } };
+	float vertex1[2] = { vertices[0] - originX, vertices[1] - originY };
+	float vertex2[2] = { vertices[7] - originX, vertices[8] - originY };
+	float vertex3[2] = { vertices[14] - originX, vertices[15] - originY };
+	float vertex4[2] = { vertices[21] - originX, vertices[22] - originY };
+
+	float x, y;
+
+	//Vertex 1
+	x = ((vertex1[1] * rotationMatrix[1][1]) - (vertex1[2] * rotationMatrix[1][2]));
+	y = ((vertex1[1] * rotationMatrix[2][1]) - (vertex1[2] * rotationMatrix[2][2]));
+	vertices[0] = x + originX;
+	vertices[1] = y + originY;
+	//Vertex 2
+	x = ((vertex2[1] * rotationMatrix[1][1]) - (vertex2[2] * rotationMatrix[1][2]));
+	y = ((vertex2[1] * rotationMatrix[2][1]) - (vertex2[2] * rotationMatrix[2][2]));
+	vertices[7] = x + originX;
+	vertices[8] = y + originY;
+	//Vertex 3
+	x = ((vertex3[1] * rotationMatrix[1][1]) - (vertex3[2] * rotationMatrix[1][2]));
+	y = ((vertex3[1] * rotationMatrix[2][1]) - (vertex3[2] * rotationMatrix[2][2]));
+	vertices[14] = x + originX;
+	vertices[15] = y + originY;
+	//Vertex 4
+	x = ((vertex4[1] * rotationMatrix[1][1]) - (vertex4[2] * rotationMatrix[1][2]));
+	y = ((vertex4[1] * rotationMatrix[2][1]) - (vertex4[2] * rotationMatrix[2][2]));
+	vertices[21] = x + originX;
+	vertices[22] = y + originY;
+}
+void Sprite::setRotation(float angleInDegrees)
+{
+	float rotationMatrix[2][2] = { { cosf(angleInDegrees), sinf(angleInDegrees) }, { -sinf(angleInDegrees), cosf(angleInDegrees) } };
+	float vertex1[2] = { -width / 2, -height / 2 };
+	float vertex2[2] = { -width / 2, height / 2 };
+	float vertex3[2] = { width / 2, -height / 2 };
+	float vertex4[2] = { width / 2, height / 2 };
+
+	float x, y;
+
+	//Vertex 1
+	x = ((vertex1[1] * rotationMatrix[1][1]) - (vertex1[2] * rotationMatrix[1][2]));
+	y = ((vertex1[1] * rotationMatrix[2][1]) - (vertex1[2] * rotationMatrix[2][2]));
+	vertices[0] = x + originX;
+	vertices[1] = y + originY;
+	//Vertex 2
+	x = ((vertex2[1] * rotationMatrix[1][1]) - (vertex2[2] * rotationMatrix[1][2]));
+	y = ((vertex2[1] * rotationMatrix[2][1]) - (vertex2[2] * rotationMatrix[2][2]));
+	vertices[7] = x + originX;
+	vertices[8] = y + originY;
+	//Vertex 3
+	x = ((vertex3[1] * rotationMatrix[1][1]) - (vertex3[2] * rotationMatrix[1][2]));
+	y = ((vertex3[1] * rotationMatrix[2][1]) - (vertex3[2] * rotationMatrix[2][2]));
+	vertices[14] = x + originX;
+	vertices[15] = y + originY;
+	//Vertex 4
+	x = ((vertex4[1] * rotationMatrix[1][1]) - (vertex4[2] * rotationMatrix[1][2]));
+	y = ((vertex4[1] * rotationMatrix[2][1]) - (vertex4[2] * rotationMatrix[2][2]));
+	vertices[21] = x + originX;
+	vertices[22] = y + originY;
+
+}
+
 
 std::string Sprite::getName()
 {
