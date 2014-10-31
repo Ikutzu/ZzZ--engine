@@ -108,7 +108,16 @@ void GameWindow::update()
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	// kutsu juttuja esim buffer.pushData ja piirrot
+	glBindBuffer(GL_ARRAY_BUFFER, *verticeBuffer.getIndex());
+	
 	Shader::useShader();
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, *indexBuffer.getIndex());
+
+	//
+	
+	glBindBuffer(GL_ARRAY_BUFFER, 0u);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0u);
 
 	SwapBuffers(hdc);
 

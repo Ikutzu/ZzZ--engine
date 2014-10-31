@@ -96,6 +96,7 @@
   <ItemGroup>
     <ClInclude Include="Buffer.h" />
     <ClInclude Include="debugger.h" />
+    <ClInclude Include="Device.h" />
     <ClInclude Include="GameWindow.h" />
     <ClInclude Include="GL\glew.h" />
     <ClInclude Include="lodepng.h" />
@@ -105,7 +106,6 @@
     <ClInclude Include="ShaderRes.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteManager.h" />
-    <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureRes.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

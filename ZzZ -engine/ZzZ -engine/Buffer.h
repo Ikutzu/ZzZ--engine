@@ -15,12 +15,13 @@ namespace ZZZ
 	{		
 	public:
 		
-	
+		~Buffer();
+
 		void createBuffer(bufferType type);
 		void pushData(unsigned size, void *data);
 
 		bufferType getType(){ return type; }
-		GLuint getIndex(){ return index; }
+		GLuint* getIndex(){ return &index; }
 
 	protected:
 

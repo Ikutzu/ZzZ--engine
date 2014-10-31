@@ -2,6 +2,11 @@
 
 using namespace ZZZ;
 
+Buffer::~Buffer()
+{
+	glDeleteBuffers(1, &index);
+}
+
 void Buffer::createBuffer(bufferType type)
 {
 	this->type = type;
