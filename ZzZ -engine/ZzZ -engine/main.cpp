@@ -4,14 +4,15 @@
 #include "debugger.h"
 #include "Shader.h"
 #include "ResourceManager.h"
+#include "Input.h"
 #include <sstream>
 
 static const int RM_TEST_SIZE = 50;
-void ResourceManagerTest();
+void resourceManagerTest();
 
 int main()
 {
-	ResourceManagerTest();
+	//resourceManagerTest();
 
 	RECT semmone;
 	semmone.left = 40;
@@ -23,9 +24,13 @@ int main()
 	testi.initialize("akkuna", semmone);
 	testi.setBackgroundColor(0.0f, 0.5f, 0.0f);
 
+	ZZZ::Input input;
 	while (testi.isRunning)
 	{
 		testi.update();
+		if (input.isKeyPressed(ZZZ::Key::A))
+			Debugger::Print("Key pressed once: A");
+		input.update();
 	}
 
 	return 0;
@@ -33,7 +38,7 @@ int main()
 
 
 //logiin pitaisi tulla 2*RM_TEST_SIZE kpl resursseja
-void ResourceManagerTest()
+void resourceManagerTest()
 {
 	ZZZ::ResourceManager rm = ZZZ::ResourceManager();
 	ZZZ::TextureRes* t[RM_TEST_SIZE];
