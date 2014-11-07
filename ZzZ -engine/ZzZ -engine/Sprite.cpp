@@ -116,6 +116,9 @@ void Sprite::setScale(float spriteScale)
 	vertices[15] = vertices[8] + (scale * height); //y
 
 	vertices[21] = vertices[7] + (scale * width); //x
+
+	originX = width / 2 * scale;
+	originY = height / 2 * scale;
 }
 void Sprite::rotate(float angleInDegrees)
 {
