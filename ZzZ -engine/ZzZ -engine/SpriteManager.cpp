@@ -41,8 +41,9 @@ void SpriteManager::batchSprites()
 {
 	std::sort(sprites.begin(), sprites.end(), SpriteSort);
 }
-std::vector<float> SpriteManager::getVertexArray()
+std::vector<float> SpriteManager::getVerticesVector()
 {
+	//Returns all vertices of all sprites
 	std::vector<float> vertices;
 	for (int i = 0; i < sprites.size(); i++)
 	{
@@ -50,8 +51,19 @@ std::vector<float> SpriteManager::getVertexArray()
 	}
 	return vertices;
 }
-std::vector<unsigned char*> SpriteManager::getTexturesArray()
+std::vector<unsigned int> SpriteManager::getIndicesVector()
 {
+	//Returns all indices of all sprites.
+	std::vector<unsigned int> indices;
+	for (int i = 0; i < sprites.size(); i++)
+	{
+		indices.insert(indices.end(), sprites[i]->indices, sprites[i]->indices + 6);
+	}
+	return indices;
+}
+std::vector<unsigned char*> SpriteManager::getTexturesVector()
+{
+	//Returns all textures of all sprites
 	std::vector<unsigned char*> textures;
 	for (int i = 0; i < sprites.size(); i++)
 	{

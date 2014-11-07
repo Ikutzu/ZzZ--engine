@@ -18,6 +18,7 @@ public:
 	unsigned char* getTexture();
 	int getDepth();
 	float vertices[28];
+	unsigned int indices[6];
 
 private:
 
@@ -36,9 +37,13 @@ private:
 	current vertex positions
 	vertex 2	vertex 4
 	vertex 1	vertex 3
+
+	Indices are set as following:
+	bottom left, top left, bottom right;
+	bottom right, top left, top right;
+
 	*/
 	std::string name;
-	unsigned int indices[4];
 	int depth;
 	unsigned char* texture;
 	float scale;

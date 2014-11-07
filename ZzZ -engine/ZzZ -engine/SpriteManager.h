@@ -8,13 +8,15 @@ public:
 	SpriteManager();
 	~SpriteManager();
 
-	//Luo uusi sprite ja lis‰‰ se sprites vectoriin
+	//Create a new sprite and add it to sprites vector
 	void newSprite(std::string name, float width, float height, int depth, unsigned char* spriteTexture);
-	//K‰y sprites vectori l‰pi ja poista halutun nimiset spritet.
+	//Remove all sprites of given name from sprites vector
 	void deleteSprite(std::string name);
-	//Antaa 
-	std::vector<float> getVertexArray();
-	std::vector<unsigned char*> getTexturesArray();
+	//Getters for vectors of specific attribute from all sprites.
+	std::vector<float> getVerticesVector();
+	std::vector<unsigned int> getIndicesVector();
+	std::vector<unsigned char*> getTexturesVector();
+
 private:
 	std::vector<Sprite*> sprites;
 
