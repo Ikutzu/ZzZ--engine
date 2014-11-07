@@ -44,9 +44,18 @@ void SpriteManager::batchSprites()
 std::vector<float> SpriteManager::getVertexArray()
 {
 	std::vector<float> vertices;
-	for (int i = 0; i < sprites.size; i++)
+	for (int i = 0; i < sprites.size(); i++)
 	{
 		vertices.insert(vertices.end(), sprites[i]->vertices, sprites[i]->vertices + 28);
 	}
 	return vertices;
+}
+std::vector<unsigned char*> SpriteManager::getTexturesArray()
+{
+	std::vector<unsigned char*> textures;
+	for (int i = 0; i < sprites.size(); i++)
+	{
+		textures.push_back(sprites[i]->getTexture());
+	}
+	return textures;
 }
