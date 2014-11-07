@@ -3,22 +3,6 @@
 using namespace std;
 using namespace ZZZ;
 
-/*
-ostringstream ss;
-ss << "hash " << (*it).first << ", name " << (*it).second << endl;
-Debugger::Print(ss.str());
-*/
-
-ResourceManager::ResourceManager()
-{
-}
-
-
-ResourceManager::~ResourceManager()
-{
-}
-
-
 void ResourceManager::printAll()
 {
 	for (mapType::iterator it = storage.begin(); it != storage.end(); it++)

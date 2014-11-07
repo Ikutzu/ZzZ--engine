@@ -6,19 +6,19 @@
 #include <sstream>
 
 
-//TODO: singleton
 namespace ZZZ
 {
 	/*
-	* How to load:
-	* Texture* tex = rm.load<TextureRes>(filename_without_extension);
+	* Tekstuurin lataus:
+	*
+	* ResourceManager rm;
+	* TextureRes* tr = rm.load<TextureRes>(filename_without_extension);
+	* Texture tex;
+	* tex.createTexture(tr);
 	*/
 	class ResourceManager
 	{
 	public:
-		ResourceManager();
-		~ResourceManager();
-
 		void printAll();
 
 		template<typename T>T* load(std::string fileName);
