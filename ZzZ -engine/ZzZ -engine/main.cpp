@@ -1,5 +1,6 @@
 
 #include "GameWindow.h"
+#include "Device.h"
 #include "debugger.h"
 #include "Shader.h"
 #include "ResourceManager.h"
@@ -18,10 +19,11 @@ int main()
 	semmone.bottom = 600;
 	semmone.right = 800;
 
-	ZZZ::GameWindow testi = ZZZ::GameWindow::createWindow("testi ikkuna", semmone);
+	ZZZ::Device testi;
+	testi.initialize("akkuna", semmone);
 	testi.setBackgroundColor(0.0f, 0.5f, 0.0f);
 
-	while (testi.running)
+	while (testi.isRunning)
 	{
 		testi.update();
 	}

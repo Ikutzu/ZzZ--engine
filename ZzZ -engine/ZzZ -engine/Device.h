@@ -8,14 +8,38 @@
 #include "Shader.h"
 #include "SpriteManager.h"
 
-class Device
+
+namespace ZZZ
 {
-public:
-	
+	class Device
+	{
+	public:
 
-private:
-		
-	
-};
+		void initialize(std::string wName, RECT wClientCoord);
 
+		void update();
+
+		void setBackgroundColor(float red, float green, float blue);
+
+
+		bool isRunning;
+
+	private:
+
+		void createBuffers();
+		void createShader();
+
+
+		float backgroundColor[4];
+
+		GameWindow* gameWindow;
+
+		Buffer verticeBuffer;
+		Buffer indexBuffer;
+
+		MSG msg;
+
+		SpriteManager spriteManager;
+	};
+}
 #endif

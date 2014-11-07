@@ -54,6 +54,9 @@
     <ClCompile Include="Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Device.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GL\glew.h">

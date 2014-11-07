@@ -82,6 +82,7 @@
   <ItemGroup>
     <ClCompile Include="Buffer.cpp" />
     <ClCompile Include="debugger.cpp" />
+    <ClCompile Include="Device.cpp" />
     <ClCompile Include="GameWindow.cpp" />
     <ClCompile Include="lodepng.cpp" />
     <ClCompile Include="main.cpp" />
