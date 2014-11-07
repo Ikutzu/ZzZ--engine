@@ -41,7 +41,7 @@ static const GLchar*  FRAGMENT_SOURCE =
 "	gl_FragColor = texture(sampleri, textureCoords) + vec4(varyColor, 0.0);\n"
 "}\n";
 
-int Shader::newShader(GLchar* vertexSource, GLchar* fragmentSource) // [shader]Source == null -> default
+int Shader::newShader(GLchar* vertexSource, GLchar* fragmentSource, RECT windowCoordinates) // [shader]Source == null -> default
 {
 	if (program == 0)
 	{
@@ -128,7 +128,10 @@ int Shader::newShader(GLchar* vertexSource, GLchar* fragmentSource) // [shader]S
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	glm::mat4 projection = glm::ortho(0.0f, 800.0f, 600.0f, 0.0f, -1.0f, 1.0f);
+	glm::mat4 projection = glm::ortho(	static_cast<float>(windowCoordinates.left),
+										static_cast<float>(windowCoordinates.right), 
+										static_cast<float>(windowCoordinates.bottom), 
+										static_cast<float>(windowCoordinates.top), -1.0f, 1.0f);
 
 	glUseProgram(program);
 
@@ -137,6 +140,11 @@ int Shader::newShader(GLchar* vertexSource, GLchar* fragmentSource) // [shader]S
 	glUseProgram(0u);
 
 	return 0;
+}
+
+GLuint* Shader::getProgram()
+{
+	return &program;
 }
 
 void Shader::useShader()

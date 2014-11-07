@@ -27,7 +27,9 @@ namespace ZZZ
 	private:
 
 		void createBuffers();
-		void createShader();
+		void createShader(RECT windowCoordinates);
+
+		void drawElements();
 
 
 		float backgroundColor[4];

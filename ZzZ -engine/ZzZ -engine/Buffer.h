@@ -20,6 +20,10 @@ namespace ZZZ
 		void createBuffer(bufferType type);
 		void pushData(unsigned size, void *data);
 
+		void bindBuffer();
+		void unbindBuffer();
+
+
 		bufferType getType(){ return type; }
 		GLuint* getIndex(){ return &index; }
 
@@ -27,6 +31,8 @@ namespace ZZZ
 
 		GLuint index;
 		bufferType type;
+
+		static unsigned size;
 
 	};
 }

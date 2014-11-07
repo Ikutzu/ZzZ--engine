@@ -1,7 +1,9 @@
 #pragma once
-#include <vector>
 #include "Sprite.h"
+#include "Texture.h"
+#include <vector>
 #include <algorithm>
+
 class SpriteManager
 {
 public:
@@ -9,13 +11,13 @@ public:
 	~SpriteManager();
 
 	//Create a new sprite and add it to sprites vector
-	void newSprite(std::string name, float width, float height, int depth, unsigned char* spriteTexture);
+	void newSprite(std::string name, float width, float height, ZZZ::Texture* spriteTexture);
 	//Remove all sprites of given name from sprites vector
 	void deleteSprite(std::string name);
 	//Getters for vectors of specific attribute from all sprites.
 	std::vector<float> getVerticesVector();
 	std::vector<unsigned int> getIndicesVector();
-	std::vector<unsigned char*> getTexturesVector();
+	std::vector<ZZZ::Texture*> getTexturesVector();
 
 private:
 	std::vector<Sprite*> sprites;

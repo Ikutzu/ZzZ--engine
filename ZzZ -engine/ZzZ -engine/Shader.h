@@ -10,8 +10,9 @@ namespace ZZZ
 	{
 	public:
 	
-		static int newShader(GLchar* shaderSource, GLchar* fragmentSource);
+		static int newShader(GLchar* shaderSource, GLchar* fragmentSource, RECT windowCoordinates);
 		
+		static GLuint* getProgram();
 		static void useShader();
 
 	private:

@@ -9,11 +9,11 @@ SpriteManager::SpriteManager()
 SpriteManager::~SpriteManager()
 {
 }
-void SpriteManager::newSprite(std::string name, float width, float height, int depth, unsigned char* spriteTexture)
+void SpriteManager::newSprite(std::string name, float width, float height, ZZZ::Texture* spriteTexture)
 {
 	//Create a new sprite, allocate it into sprites vector and batch the sprites.
-	Sprite* newSprite = new Sprite(name, width, height, depth, spriteTexture);
-	sprites.push_back(newSprite);
+	//Sprite* newSprite = new Sprite(name, width, height, spriteTexture);
+	sprites.push_back(new Sprite(name, width, height, spriteTexture));
 	void batchSprites();
 }
 void SpriteManager::deleteSprite(std::string name)
@@ -61,10 +61,10 @@ std::vector<unsigned int> SpriteManager::getIndicesVector()
 	}
 	return indices;
 }
-std::vector<unsigned char*> SpriteManager::getTexturesVector()
+std::vector<ZZZ::Texture*> SpriteManager::getTexturesVector()
 {
 	//Returns all textures of all sprites
-	std::vector<unsigned char*> textures;
+	std::vector<ZZZ::Texture*> textures;
 	for (int i = 0; i < sprites.size(); i++)
 	{
 		textures.push_back(sprites[i]->getTexture());

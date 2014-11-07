@@ -5,14 +5,26 @@
 #include "Shader.h"
 #include "ResourceManager.h"
 #include "Input.h"
+#include "Sprite.h"
 #include <sstream>
 
 static const int RM_TEST_SIZE = 50;
 void resourceManagerTest();
 
+using namespace ZZZ;
+
 int main()
 {
 	//resourceManagerTest();
+	ResourceManager rm = ResourceManager();
+	TextureRes* t = rm.load<TextureRes>("lode_test_in");
+
+	Texture testiTex;
+	testiTex.createTexture(t);
+
+	SpriteManager smanageri;
+
+	smanageri.newSprite("testi", 50, 150, &testiTex);
 
 	RECT semmone;
 	semmone.left = 40;
