@@ -1,14 +1,14 @@
 #include "Sprite.h"
 
 
-Sprite::Sprite(std::string spriteName, float spriteWidth, float spriteHeight, int layerDepth, unsigned char* spriteTexture)
+Sprite::Sprite(std::string spriteName, float spriteWidth, float spriteHeight, ZZZ::Texture* spriteTexture)
 {
 	float base = 1;
 	scale = 1;
 	width = spriteWidth;
 	height = spriteHeight;
 	name = spriteName;
-	depth = layerDepth;
+	depth = 1;
 	//Vertex 1
 	vertices[0] = 0.0f; //x
 	vertices[1] = base * height; //y
@@ -59,6 +59,10 @@ Sprite::Sprite(std::string spriteName, float spriteWidth, float spriteHeight, in
 
 Sprite::~Sprite()
 {
+}
+void Sprite::setLayerDepth(int layerDepth)
+{
+	depth = layerDepth;
 }
 
 void Sprite::moveSprite(float x, float y)
@@ -184,7 +188,7 @@ std::string Sprite::getName()
 {
 	return name;
 }
-void Sprite::setTexture(unsigned char* spriteTexture)
+void Sprite::setTexture(ZZZ::Texture* spriteTexture)
 {
 	texture = spriteTexture;
 
@@ -193,7 +197,7 @@ int Sprite::getDepth()
 {
 	return depth;
 }
-unsigned char* Sprite::getTexture()
+ZZZ::Texture* Sprite::getTexture()
 {
 	return texture;
 }

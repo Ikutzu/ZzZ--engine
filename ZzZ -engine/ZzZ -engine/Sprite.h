@@ -3,10 +3,11 @@
 #include <stdio.h>
 #include <vector>
 #include "debugger.h"
+#include "Texture.h"
 class Sprite
 {
 public:
-	Sprite(std::string spriteName, float spriteWidth, float spriteHeight, int layerDepth, unsigned char* spriteTexture);
+	Sprite(std::string spriteName, float spriteWidth, float spriteHeight, ZZZ::Texture* spriteTexture);
 	~Sprite();
 	void moveSprite(float x, float y);
 	void setPosition(float x, float y);
@@ -14,11 +15,12 @@ public:
 	void rotate(float angleInDegrees);
 	void setRotation(float angleInDegrees);
 	std::string getName();
-	void setTexture(unsigned char* spriteTexture);
-	unsigned char* getTexture();
+	void setTexture(ZZZ::Texture* spriteTexture);
+	ZZZ::Texture* getTexture();
 	int getDepth();
 	float vertices[28];
 	unsigned int indices[6];
+	void setLayerDepth(int layerDepth);
 
 private:
 
@@ -45,7 +47,7 @@ private:
 	*/
 	std::string name;
 	int depth;
-	unsigned char* texture;
+	ZZZ::Texture* texture;
 	float scale;
 	float width, height;
 	float originX, originY;
