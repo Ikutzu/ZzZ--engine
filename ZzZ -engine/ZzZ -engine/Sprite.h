@@ -17,6 +17,7 @@ public:
 	void setTexture(unsigned char* spriteTexture);
 	unsigned char* getTexture();
 	int getDepth();
+	float vertices[28];
 
 private:
 
@@ -37,7 +38,6 @@ private:
 	vertex 1	vertex 3
 	*/
 	std::string name;
-	float vertices[28];
 	unsigned int indices[4];
 	int depth;
 	unsigned char* texture;

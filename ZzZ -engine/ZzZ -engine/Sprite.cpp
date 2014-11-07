@@ -99,6 +99,7 @@ void Sprite::setPosition(float x, float y)
 }
 void Sprite::setScale(float spriteScale)
 {
+	//Scales the sprite
 	scale = spriteScale;
 	float tempWidth = width*scale;
 	float tempHeight = height*scale;
@@ -111,6 +112,7 @@ void Sprite::setScale(float spriteScale)
 }
 void Sprite::rotate(float angleInDegrees)
 {
+	//Rotates the sprite
 	float rotationMatrix[2][2] = { { cosf(angleInDegrees), sinf(angleInDegrees) }, { -sinf(angleInDegrees), cosf(angleInDegrees) } };
 	float vertex1[2] = { vertices[0] - originX, vertices[1] - originY };
 	float vertex2[2] = { vertices[7] - originX, vertices[8] - originY };
@@ -142,6 +144,7 @@ void Sprite::rotate(float angleInDegrees)
 }
 void Sprite::setRotation(float angleInDegrees)
 {
+	//Sets absolute rotation for the sprite.
 	float rotationMatrix[2][2] = { { cosf(angleInDegrees), sinf(angleInDegrees) }, { -sinf(angleInDegrees), cosf(angleInDegrees) } };
 	float vertex1[2] = { -width / 2, -height / 2 };
 	float vertex2[2] = { -width / 2, height / 2 };

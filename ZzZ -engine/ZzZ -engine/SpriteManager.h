@@ -12,6 +12,7 @@ public:
 	void newSprite(std::string name, float width, float height, int depth, unsigned char* spriteTexture);
 	//Käy sprites vectori läpi ja poista halutun nimiset spritet.
 	void deleteSprite(std::string name);
+	std::vector<float> getVertexArray();
 private:
 	std::vector<Sprite*> sprites;
 
