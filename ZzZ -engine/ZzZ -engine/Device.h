@@ -24,6 +24,8 @@ namespace ZZZ
 
 		bool isRunning;
 
+		SpriteManager spriteManager;
+
 	private:
 
 		void createBuffers();
@@ -41,7 +43,6 @@ namespace ZZZ
 
 		MSG msg;
 
-		SpriteManager spriteManager;
 	};
 }
 #endif

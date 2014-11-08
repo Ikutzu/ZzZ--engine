@@ -17,14 +17,6 @@ int main()
 {
 	//resourceManagerTest();
 	ResourceManager rm = ResourceManager();
-	TextureRes* t = rm.load<TextureRes>("lode_test_in");
-
-	Texture testiTex;
-	testiTex.createTexture(t);
-
-	SpriteManager smanageri;
-
-	smanageri.newSprite("testi", 50, 150, &testiTex);
 
 	RECT semmone;
 	semmone.left = 40;
@@ -37,6 +29,17 @@ int main()
 	testi.setBackgroundColor(0.0f, 0.5f, 0.0f);
 
 	ZZZ::Input input;
+
+
+
+	TextureRes* t = rm.load<TextureRes>("lode_test_in");
+
+	Texture testiTex;
+	testiTex.createTexture(t);
+
+	testi.spriteManager.newSprite("testi", 50, 150, &testiTex);
+
+
 	while (testi.isRunning)
 	{
 		testi.update();
