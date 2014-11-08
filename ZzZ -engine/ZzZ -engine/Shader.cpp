@@ -80,13 +80,13 @@ int Shader::newShader(GLchar* vertexSource, GLchar* fragmentSource, RECT windowC
 			Debugger::Print("Program linking error.");
 			return 1;
 		}
-		glGetProgramiv(vertexShader, GL_COMPILE_STATUS, &testResult);
+		glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &testResult);
 		if (testResult != GL_TRUE)
 		{
 			Debugger::Print("Vertex shader compile error.");
 			return 1;
 		}
-		glGetProgramiv(fragmentShader, GL_COMPILE_STATUS, &testResult);
+		glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &testResult);
 		if (testResult != GL_TRUE)
 		{
 			Debugger::Print("Fragment shader compile error.");
