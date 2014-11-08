@@ -19,6 +19,8 @@ public:
 	std::vector<unsigned int> getIndicesVector();
 	std::vector<ZZZ::Texture*> getTexturesVector();
 
+	void drawSprites(GLuint vertexBufferIndex, GLuint indiceBufferIndex);
+
 private:
 	std::vector<Sprite*> sprites;
 

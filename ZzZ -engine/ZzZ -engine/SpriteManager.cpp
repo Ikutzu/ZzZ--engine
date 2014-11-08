@@ -71,3 +71,11 @@ std::vector<ZZZ::Texture*> SpriteManager::getTexturesVector()
 	}
 	return textures;
 }
+
+void SpriteManager::drawSprites(GLuint vertexBufferIndex, GLuint indiceBufferIndex)
+{
+	for (int i = 0; i < sprites.size(); i++)
+	{
+		sprites[i]->draw(vertexBufferIndex, indiceBufferIndex);
+	}
+}

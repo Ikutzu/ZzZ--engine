@@ -25,7 +25,7 @@ namespace ZZZ
 
 
 		bufferType getType(){ return type; }
-		GLuint* getIndex(){ return &index; }
+		GLuint getIndex(){ return index; }
 
 	protected:
 

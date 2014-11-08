@@ -11,7 +11,7 @@ namespace ZZZ
 	public:
 		void createTexture(TextureRes* resource);
 
-		GLuint* getIndex(){ return &index; };
+		GLuint getIndex(){ return index; };
 
 	private:
 		GLuint index;

@@ -20,8 +20,6 @@ void Device::initialize(std::string wName, RECT wClientCoord)
 
 void Device::update()
 {
-	glUseProgram(*Shader::getProgram());
-
 	while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE) != 0)
 	{
 		if (msg.message == WM_QUIT)
@@ -34,9 +32,12 @@ void Device::update()
 
 	glClearColor(backgroundColor[0], backgroundColor[1], backgroundColor[2], backgroundColor[3]);
 	glClear(GL_COLOR_BUFFER_BIT);
+	glUseProgram(*Shader::getProgram());
+
+	glEnable(GL_TEXTURE_2D);
 
 	// kutsu juttuja esim buffer.pushData ja piirrot
-	verticeBuffer.pushData(sizeof(spriteManager.getVerticesVector()), &spriteManager.getVerticesVector());
+	/*verticeBuffer.pushData(sizeof(spriteManager.getVerticesVector()), &spriteManager.getVerticesVector());
 	indexBuffer.pushData(sizeof(spriteManager.getIndicesVector()), &spriteManager.getIndicesVector());
 
 
@@ -51,7 +52,11 @@ void Device::update()
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0u);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0u);
+*/
 
+	spriteManager.drawSprites(verticeBuffer.getIndex(), indexBuffer.getIndex());
+
+	glDisable(GL_TEXTURE_2D);
 	SwapBuffers(gameWindow->hdc);
 	
 	glUseProgram(0u);
@@ -78,20 +83,20 @@ void Device::createShader(RECT windowCoordinates)
 
 void Device::drawElements()
 {
-	std::vector<Texture*> textureVector = spriteManager.getTexturesVector();
-	std::vector<Texture*>::iterator textureit;
-	
-	for (textureit = textureVector.begin(); textureit != textureVector.end(); textureit++)
-//	for (int o = 0; 0 < textureVector->size(); o++)
-	{
-		int i = 0;
-		//Kaatuu tähän
-		if (textureit != textureit - 1 || textureit == textureVector.begin())
-		{
-			glBindTexture(GL_TEXTURE_2D, *(*textureit)->getIndex());
-		}
-		glDrawElements(GL_TRIANGLES, 6u, GL_UNSIGNED_INT, reinterpret_cast<GLvoid*>(24*i));
-
-		i++;
-	}
+//	std::vector<Texture*> textureVector = spriteManager.getTexturesVector();
+//	std::vector<Texture*>::iterator textureit;
+//	
+//	for (textureit = textureVector.begin(); textureit != textureVector.end(); textureit++)
+////	for (int o = 0; 0 < textureVector->size(); o++)
+//	{
+//		int i = 0;
+//		//Kaatuu tähän
+//		if (textureit != textureit - 1 || textureit == textureVector.begin())
+//		{
+//			glBindTexture(GL_TEXTURE_2D, *(*textureit)->getIndex());
+//		}
+//		glDrawElements(GL_TRIANGLES, 6u, GL_UNSIGNED_INT, reinterpret_cast<GLvoid*>(24*i));
+//
+//		i++;
+//	}
 }

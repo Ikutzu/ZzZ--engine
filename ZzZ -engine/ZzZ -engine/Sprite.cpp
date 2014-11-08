@@ -204,3 +204,32 @@ ZZZ::Texture* Sprite::getTexture()
 {
 	return texture;
 }
+
+void Sprite::draw(GLuint vertexBufferIndex, GLuint indiceBufferIndex)
+{
+	GLenum error = 0;
+	glBindBuffer(GL_ARRAY_BUFFER, vertexBufferIndex);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, 28 * sizeof(float), vertices);
+	error = glGetError();
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indiceBufferIndex);
+	glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, 6 * sizeof(float), indices);
+	error = glGetError();
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+	glBindBuffer(GL_ARRAY_BUFFER, vertexBufferIndex);
+	error = glGetError();
+	ZZZ::Shader::useShader();
+	error = glGetError();
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indiceBufferIndex);
+	error = glGetError();
+	glBindTexture(GL_TEXTURE_2D, texture->getIndex());
+	error = glGetError();
+
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, reinterpret_cast<GLvoid*>(0));
+	error = glGetError();
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+}

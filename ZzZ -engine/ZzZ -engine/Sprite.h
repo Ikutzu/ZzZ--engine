@@ -4,6 +4,9 @@
 #include <vector>
 #include "debugger.h"
 #include "Texture.h"
+#include "Shader.h"
+#include "Buffer.h"
+
 class Sprite
 {
 public:
@@ -21,6 +24,7 @@ public:
 	float vertices[28];
 	unsigned int indices[6];
 	void setLayerDepth(int layerDepth);
+	void draw(GLuint vertexBufferIndex, GLuint indiceBufferIndex);
 
 private:
 
