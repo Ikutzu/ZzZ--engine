@@ -15,6 +15,7 @@ using namespace ZZZ;
 
 int main()
 {
+
 	//resourceManagerTest();
 	ResourceManager rm = ResourceManager();
 
@@ -26,19 +27,20 @@ int main()
 
 	ZZZ::Device testi;
 	testi.initialize("akkuna", semmone);
-	testi.setBackgroundColor(0.0f, 0.5f, 0.0f);
+	Debugger::checkGLError("There should be no errors");
 
+	testi.setBackgroundColor(0.0f, 0.5f, 0.0f);
 	ZZZ::Input input;
 
 
 
 	TextureRes* t = rm.load<TextureRes>("lode_test_in");
-
+	Debugger::checkGLError("Create TextureRes");
 	Texture testiTex;
 	testiTex.createTexture(t);
-
+	Debugger::checkGLError("Create Opengl Texture");
 	testi.spriteManager.newSprite("testi", 50, 150, &testiTex);
-
+	Debugger::checkGLError("Created 'testi' sprite");
 
 	while (testi.isRunning)
 	{

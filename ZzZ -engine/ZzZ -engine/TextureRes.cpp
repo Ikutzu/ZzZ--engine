@@ -10,7 +10,6 @@ TextureRes::TextureRes(string fn) : Resource(fn)
 
 TextureRes::~TextureRes()
 {
-	delete texture;
 }
 
 
@@ -22,17 +21,15 @@ string TextureRes::getFullPath()
 
 bool TextureRes::decodeImage()
 {
-	vector<unsigned char> temp;
-	if (!lodepng::decode(temp, width, height, getFullPath()))
+	unsigned error = lodepng::decode(texture, width, height, getFullPath());
+	if (error == 0)
 	{
-		size = temp.size();
-		texture = new unsigned char[temp.size()];
-		for (int i = 0; i < size; i++)
-		{
-			texture[i] = temp.at(i);
-		}
+		Debugger::Print("Decoded image succesfully.");
 		return true;
 	}
-	else 
+	else
+	{
+		Debugger::Print("Decoding image failed.");
 		return false;
+	}
 }

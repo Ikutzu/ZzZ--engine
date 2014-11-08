@@ -41,3 +41,13 @@ void Debugger::Print(std::string debugString)
 	outputFile.close();
 	OutputDebugString(debugString.c_str());
 }
+void Debugger::checkGLError(std::string debugString)
+{
+	GLenum error = 0;
+	error = glGetError();
+	while (error != 0)
+	{
+		error = glGetError();
+		Print(debugString);
+	}
+}

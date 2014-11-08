@@ -6,6 +6,7 @@
 #include <fstream>
 #include <time.h>
 #include <Windows.h>
+#include "GL\glew.h"
 
 /*
 HOW_TO?
@@ -20,6 +21,7 @@ class Debugger
 public:
 	static Debugger* Instance();
 	static void Print(std::string debugString);
+	static void checkGLError(std::string debugString);
 protected:
 	Debugger();
 	~Debugger();

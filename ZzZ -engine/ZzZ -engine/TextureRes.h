@@ -2,6 +2,7 @@
 #include "Resource.h"
 #include "lodepng.h"
 #include <vector>
+#include "debugger.h"
 
 namespace ZZZ
 {
@@ -15,13 +16,13 @@ namespace ZZZ
 		static std::string getFolder(){ return "Assets\\Textures\\"; };
 		static std::string getFileType(){ return ".png"; };
 
-		unsigned char* getTexture(){ return texture; };
+		std::vector<unsigned char> getTexture(){ return texture; };
 		unsigned getWidth(){ return width; };
 		unsigned getHeight(){ return height; };
 		unsigned getSize(){ return size; };
 
 	private:
-		unsigned char* texture;
+		std::vector<unsigned char> texture;
 		unsigned width, height, size;
 
 		bool decodeImage();
