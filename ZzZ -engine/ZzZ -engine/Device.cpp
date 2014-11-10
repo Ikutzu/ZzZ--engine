@@ -86,7 +86,7 @@ void Device::drawElements()
 	{
 		int i = 0;
 		//Kaatuu tähän
-		//if (textureit != textureit - 1 || textureit == textureVector.begin())
+		if (textureit == textureVector.begin() || textureit != textureit - 1)
 		{
 			glBindTexture(GL_TEXTURE_2D, *(*textureit)->getIndex());
 		}
