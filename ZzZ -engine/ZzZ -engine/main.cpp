@@ -28,11 +28,14 @@ int main()
 
 	//siirretty mainista
 	Texture testiTex(testi.rm.load<TextureRes>("lode_test_in"));
+	Texture testi2Tex(testi.rm.load<TextureRes>("KhorneMark"));
 	int spriteID = testi.spriteManager.newSprite("testi", 300, 450, &testiTex);
 	Sprite* sprite1 = testi.spriteManager.getSprite(spriteID);
 
 	sprite1->setPosition(175,0);
 	sprite1->moveSprite(100, 100);
+	sprite1->setTexture(&testi2Tex);
+	sprite1->setScale(1, 0.7);
 	float angle = 0;
 	while (testi.isRunning)
 	{

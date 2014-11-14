@@ -18,6 +18,7 @@ namespace ZZZ
 		void moveSprite(float x, float y);
 		void setPosition(float x, float y);
 		void setScale(float spriteScale);
+		void setScale(float x, float y);
 		void rotate(float angleInDegrees);
 		void setRotation(float angleInDegrees);
 		std::string getName();
@@ -56,7 +57,7 @@ namespace ZZZ
 		std::string name;
 		int depth, id;
 		ZZZ::Texture* texture;
-		float scale;
+		float scale, scaleX, scaleY;
 		float width, height;
 		float originX, originY;
 		float currentAngle;

@@ -7,6 +7,8 @@ Sprite::Sprite(std::string spriteName, float spriteWidth, float spriteHeight, ZZ
 	
 	float base = 1;
 	scale = 1;
+	scaleX = 1;
+	scaleY = 1;
 	depth = 1;
 	id = spriteID;
 	width = spriteWidth;
@@ -115,15 +117,31 @@ void Sprite::setScale(float spriteScale)
 {
 	//Scales the sprite
 	scale = spriteScale;
-	vertices[1] = vertices[8] + (scale * height); //y
+	vertices[1] = vertices[8] + (scaleY * scale * height); //y
 
-	vertices[14] = vertices[7] + (scale * width); //x
-	vertices[15] = vertices[8] + (scale * height); //y
+	vertices[14] = vertices[7] + (scaleX * scale * width); //x
+	vertices[15] = vertices[8] + (scaleY * scale * height); //y
 
-	vertices[21] = vertices[7] + (scale * width); //x
+	vertices[21] = vertices[7] + (scaleX * scale * width); //x
 
-	originX = vertices[7] + width * scale / 2;
-	originY = vertices[8] + height * scale / 2;
+	originX = vertices[7] + width * scaleX * scale / 2;
+	originY = vertices[8] + height * scaleY * scale / 2;
+}
+void Sprite::setScale(float x, float y)
+{
+	//Scales the sprite
+	scaleX = x;	
+	scaleY = y;
+
+	vertices[1] = vertices[8] + (scaleY * scale * height); //y
+
+	vertices[14] = vertices[7] + (scaleX * scale * width); //x
+	vertices[15] = vertices[8] + (scaleY * scale * height); //y
+
+	vertices[21] = vertices[7] + (scaleX * scale * width); //x
+
+	originX = vertices[7] + width * scaleX * scale / 2;
+	originY = vertices[8] + height * scaleY * scale / 2;
 }
 void Sprite::rotate(float angleInDegrees)
 {
@@ -139,10 +157,10 @@ void Sprite::setRotation(float angleInDegrees)
 	//Rotates counter clockwise.
 	float conv = angleInDegrees * 3.14159265 / 180;
 	float rotationMatrix[2][2] = { { cos(conv), sin(conv) }, { -sin(conv), cos(conv) } };
-	float vertex1[2] = { (-width / 2) * scale, (-height / 2) * scale };
-	float vertex2[2] = { (-width / 2) * scale, (height / 2) * scale };
-	float vertex3[2] = { (width / 2) * scale, (-height / 2) * scale };
-	float vertex4[2] = { (width / 2) * scale, (height / 2) * scale };
+	float vertex1[2] = { -width * scaleX * scale / 2, -height * scaleY * scale / 2 };
+	float vertex2[2] = { -width * scaleX * scale / 2, height * scaleY * scale / 2 };
+	float vertex3[2] = { width * scaleX * scale / 2, -height * scaleY * scale / 2 };
+	float vertex4[2] = { width * scaleX * scale / 2, height * scaleY * scale / 2 };
 
 	float x, y;
 
