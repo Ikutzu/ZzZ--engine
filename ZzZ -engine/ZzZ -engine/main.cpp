@@ -31,15 +31,17 @@ int main()
 	int spriteID = testi.spriteManager.newSprite("testi", 300, 450, &testiTex);
 	Sprite* sprite1 = testi.spriteManager.getSprite(spriteID);
 
+	sprite1->setPosition(175,0);
 	sprite1->moveSprite(100, 100);
-	sprite1->setPosition(250, 250);
-	sprite1->setScale(0.5f);
-	sprite1->rotate(45);
-	sprite1->moveSprite(100, 100);
-
+	float angle = 0;
 	while (testi.isRunning)
 	{
+
 		testi.update();
+		angle += 0.01;
+
+		sprite1->setRotation(angle);
+		sprite1->rotate(0.01);
 	}
 
 	return 0;

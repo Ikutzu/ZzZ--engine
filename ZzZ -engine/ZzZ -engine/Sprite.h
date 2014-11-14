@@ -59,6 +59,7 @@ namespace ZZZ
 		float scale;
 		float width, height;
 		float originX, originY;
+		float currentAngle;
 
 	};
 
