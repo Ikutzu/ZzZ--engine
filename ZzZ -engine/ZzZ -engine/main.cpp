@@ -34,6 +34,8 @@ int main()
 	sprite1->moveSprite(100, 100);
 	sprite1->setPosition(250, 250);
 	sprite1->setScale(0.5f);
+	sprite1->rotate(45);
+	sprite1->moveSprite(100, 100);
 
 	while (testi.isRunning)
 	{

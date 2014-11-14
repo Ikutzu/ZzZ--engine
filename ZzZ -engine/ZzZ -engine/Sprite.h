@@ -6,6 +6,7 @@
 #include "Texture.h"
 #include "Buffer.h"
 #include "Shader.h"
+#include <math.h>
 
 namespace ZZZ
 {
