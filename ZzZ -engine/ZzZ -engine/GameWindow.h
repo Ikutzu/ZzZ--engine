@@ -14,7 +14,7 @@ namespace ZZZ
 	public:
 
 		~GameWindow(){ UnregisterClass("GameWindowClass", hInstance); }
-
+		HWND* getWindowHandle(){ return &hWnd; };
 
 	private:
 

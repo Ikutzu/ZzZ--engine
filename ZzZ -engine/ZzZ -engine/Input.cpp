@@ -2,23 +2,30 @@
 
 using namespace ZZZ;
 
-Input::Input()
+
+bool Input::initialize(HWND* windowHandle)
 {
-	update();
+	if (windowHandle != nullptr)
+	{
+		hWnd = windowHandle;
+		update();
+		return true;
+	}
+	return false;
 }
 
 
-Input::~Input()
-{
-}
-
-
+// updates key states and cursor position relative to window and screen
 void Input::update()
 {
 	for (int i = 0; i < KeyCount; i++)
 	{
 		lastState[i] = isKeyDown(static_cast<Key>(i));
 	}
+
+	GetCursorPos(&cursorWindowPos);
+	cursorScreenPos = cursorWindowPos;
+	ScreenToClient(*hWnd, &cursorWindowPos);
 }
 
 
@@ -64,7 +71,7 @@ bool Input::isKeyDown(Key key)
 	case Num7:       vkey = '7';           break;
 	case Num8:       vkey = '8';           break;
 	case Num9:       vkey = '9';           break;
-	case EscapeKey:  vkey = VK_ESCAPE;     break;
+	case Escape:     vkey = VK_ESCAPE;     break;
 	case LControl:   vkey = VK_LCONTROL;   break;
 	case LShift:     vkey = VK_LSHIFT;     break;
 	case LAlt:       vkey = VK_LMENU;      break;
@@ -129,6 +136,13 @@ bool Input::isKeyDown(Key key)
 	case F14:        vkey = VK_F14;        break;
 	case F15:        vkey = VK_F15;        break;
 	case Pause:      vkey = VK_PAUSE;      break;
+
+	//mouse
+	case MouseLeft:  vkey = VK_LBUTTON;    break;
+	case MouseRight: vkey = VK_RBUTTON;    break;
+	case MouseMiddle:vkey = VK_MBUTTON;    break;
+	case Mouse4:     vkey = VK_XBUTTON1;   break;
+	case Mouse5:     vkey = VK_XBUTTON2;   break;
 	}
 
 	return (GetAsyncKeyState(vkey) & 0x8000) != 0;
@@ -139,5 +153,15 @@ bool Input::isKeyDown(Key key)
 bool Input::isKeyPressed(Key key)
 {
 	return lastState[key] && !isKeyDown(key);
+}
+
+
+// returns cursor position relative to window by default
+POINT Input::getCursorPos(bool asScreenCoordinates)
+{
+	if (asScreenCoordinates)
+		return cursorScreenPos;
+	else
+		return cursorWindowPos;
 }
 

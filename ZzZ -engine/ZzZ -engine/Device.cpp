@@ -7,6 +7,8 @@ void Device::initialize(std::string wName, RECT wClientCoord)
 {
 	gameWindow = new GameWindow(wName.c_str(), wClientCoord);
 	rm = ResourceManager();
+	input = Input();
+	input.initialize(gameWindow->getWindowHandle());
 
 	isRunning = true;
 
@@ -60,6 +62,18 @@ void Device::update()
 	SwapBuffers(gameWindow->hdc);
 	
 	glUseProgram(0u);
+
+	//input test
+	if (input.isKeyPressed(ZZZ::Key::A))
+		Debugger::Print("Key pressed once: A");
+
+	if (input.isKeyDown(Key::Space))
+	{
+		Debugger::Print("x ", input.getCursorPos().x);
+		Debugger::Print("y ", input.getCursorPos().y);
+	}
+
+	input.update();
 }
 
 void Device::setBackgroundColor(float red, float green, float blue)

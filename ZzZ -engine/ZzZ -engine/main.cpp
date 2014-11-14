@@ -4,7 +4,6 @@
 #include "debugger.h"
 #include "Shader.h"
 #include "ResourceManager.h"
-#include "Input.h"
 #include "Sprite.h"
 #include <sstream>
 
@@ -27,14 +26,9 @@ int main()
 	testi.initialize("akkuna", semmone);
 	testi.setBackgroundColor(0.0f, 0.5f, 0.0f);
 
-	ZZZ::Input input;
-
 	while (testi.isRunning)
 	{
 		testi.update();
-		if (input.isKeyPressed(ZZZ::Key::A))
-			Debugger::Print("Key pressed once: A");
-		input.update();
 	}
 
 	return 0;

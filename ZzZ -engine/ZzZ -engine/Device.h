@@ -7,6 +7,7 @@
 #include "ResourceManager.h"
 #include "Shader.h"
 #include "SpriteManager.h"
+#include "Input.h"
 
 
 namespace ZZZ
@@ -14,7 +15,6 @@ namespace ZZZ
 	class Device
 	{
 	public:
-
 		void initialize(std::string wName, RECT wClientCoord);
 
 		void update();
@@ -44,6 +44,7 @@ namespace ZZZ
 		MSG msg;
 
 		ResourceManager rm;
+		Input input;
 	};
 }
 #endif
