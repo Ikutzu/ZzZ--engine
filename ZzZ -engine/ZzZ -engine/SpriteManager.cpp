@@ -13,10 +13,10 @@ SpriteManager::~SpriteManager()
 int SpriteManager::newSprite(std::string name, float width, float height, ZZZ::Texture* spriteTexture)
 {
 	//Create a new sprite, allocate it into sprites vector and batch the sprites.
-	//Sprite* newSprite = new Sprite(name, width, height, spriteTexture);
-	//batchSprites();
+	
 	nextID++;
 	sprites.push_back(new Sprite(name, width, height, spriteTexture, nextID));
+	batchSprites();
 	return nextID;
 }
 void SpriteManager::deleteSprite(int spriteID)
@@ -30,29 +30,40 @@ void SpriteManager::deleteSprite(int spriteID)
 		i--;
 	}
 
-	//batchSprites();
+	batchSprites();
 }
 
 void SpriteManager::drawSprites(ZZZ::Buffer* vertexBuffer, ZZZ::Buffer* indiceBuffer)
 {
+	//Call draw for all 
 	for (int i = 0; i < sprites.size(); i++)
 	{
 		sprites[i]->draw(vertexBuffer, indiceBuffer);
 	}
 }
+bool SpriteSort(Sprite* A, Sprite* B)
+{
+	//Help function for sort
+	if (A->getDepth() == B->getDepth())
+		return A->getTexture() < B->getTexture();
+	else
+		return A->getDepth() < B->getDepth();
+}
+void SpriteManager::batchSprites()
+{
+	std::sort(sprites.begin(), sprites.end(), SpriteSort);
+}
+Sprite* SpriteManager::getSprite(int spriteID)
+{
+	for (int i = 0; i < sprites.size(); i++)
+	{
+		if (spriteID == sprites[i]->getID())
+			return sprites[i];
+	}
+
+}
+
 ////Ei tarvita uudella tyylillä
-//bool SpriteSort(Sprite* A, Sprite* B)
-//{
-//	//Help function for sort
-//	if (A->getDepth() == B->getDepth())
-//		return A->getTexture() < B->getTexture();
-//	else
-//		return A->getDepth() < B->getDepth();
-//}
-//void SpriteManager::batchSprites()
-//{
-//	std::sort(sprites.begin(), sprites.end(), SpriteSort);
-//}
 //std::vector<float> SpriteManager::getVerticesVector()
 //{
 //	//Returns all vertices of all sprites
