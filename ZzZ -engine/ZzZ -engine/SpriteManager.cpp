@@ -14,7 +14,7 @@ void SpriteManager::newSprite(std::string name, float width, float height, ZZZ::
 	//Create a new sprite, allocate it into sprites vector and batch the sprites.
 	//Sprite* newSprite = new Sprite(name, width, height, spriteTexture);
 	sprites.push_back(new Sprite(name, width, height, spriteTexture));
-	void batchSprites();
+	batchSprites();
 }
 void SpriteManager::deleteSprite(std::string name)
 {
@@ -27,7 +27,7 @@ void SpriteManager::deleteSprite(std::string name)
 		i--;
 	}
 
-	void batchSprites();
+	batchSprites();
 }
 bool SpriteSort(Sprite* A, Sprite* B)
 {
