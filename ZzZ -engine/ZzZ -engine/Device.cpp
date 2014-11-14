@@ -6,6 +6,7 @@ using namespace ZZZ;
 void Device::initialize(std::string wName, RECT wClientCoord)
 {
 	gameWindow = new GameWindow(wName.c_str(), wClientCoord);
+	rm = ResourceManager();
 
 	isRunning = true;
 
@@ -16,6 +17,10 @@ void Device::initialize(std::string wName, RECT wClientCoord)
 
 	createBuffers();
 	createShader(wClientCoord);
+
+	//siirretty mainista
+	Texture testiTex(rm.load<TextureRes>("lode_test_in"));
+	spriteManager.newSprite("testi", 50, 150, &testiTex);
 }
 
 void Device::update()
@@ -36,8 +41,8 @@ void Device::update()
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	// kutsu juttuja esim buffer.pushData ja piirrot
-	verticeBuffer.pushData(sizeof(spriteManager.getVerticesVector()), &spriteManager.getVerticesVector());
-	indexBuffer.pushData(sizeof(spriteManager.getIndicesVector()), &spriteManager.getIndicesVector());
+	//verticeBuffer.pushData(sizeof(spriteManager.getVerticesVector()), &spriteManager.getVerticesVector());
+	//indexBuffer.pushData(sizeof(spriteManager.getIndicesVector()), &spriteManager.getIndicesVector());
 
 
 	glBindBuffer(GL_ARRAY_BUFFER, *verticeBuffer.getIndex());
@@ -78,6 +83,7 @@ void Device::createShader(RECT windowCoordinates)
 
 void Device::drawElements()
 {
+	/*
 	std::vector<Texture*> textureVector = spriteManager.getTexturesVector();
 	std::vector<Texture*>::iterator textureit;
 	
@@ -94,4 +100,5 @@ void Device::drawElements()
 
 		i++;
 	}
+	*/
 }

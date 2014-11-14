@@ -2,6 +2,16 @@
 
 using namespace ZZZ;
 
+Texture::Texture(TextureRes* resource)
+{
+	createTexture(resource);
+}
+
+Texture::~Texture()
+{
+
+}
+
 void Texture::createTexture(TextureRes* resource)
 {
 	glGenTextures(1, &index);

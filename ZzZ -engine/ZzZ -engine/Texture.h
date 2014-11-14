@@ -9,11 +9,14 @@ namespace ZZZ
 	class Texture
 	{
 	public:
-		void createTexture(TextureRes* resource);
+		Texture(TextureRes* resource);
+		~Texture();
 
 		GLuint* getIndex(){ return &index; };
 
 	private:
+		void createTexture(TextureRes* resource);
+
 		GLuint index;
 
 	};

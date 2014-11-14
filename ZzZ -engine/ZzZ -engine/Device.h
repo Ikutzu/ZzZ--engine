@@ -43,6 +43,7 @@ namespace ZZZ
 
 		MSG msg;
 
+		ResourceManager rm;
 	};
 }
 #endif
