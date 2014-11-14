@@ -204,3 +204,18 @@ ZZZ::Texture* Sprite::getTexture()
 {
 	return texture;
 }
+
+void Sprite::draw(ZZZ::Buffer* vertexBuffer, ZZZ::Buffer* indiceBuffer)
+{
+	vertexBuffer->pushData(sizeof(vertices), &vertices);
+	indiceBuffer->pushData(sizeof(indices), &indices);
+	
+	glBindBuffer(GL_ARRAY_BUFFER, *vertexBuffer->getIndex());
+	ZZZ::Shader::useShader();
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, *indiceBuffer->getIndex());
+	glBindTexture(GL_TEXTURE_2D, *texture->getIndex());
+
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, reinterpret_cast<GLvoid*>(0));
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+}

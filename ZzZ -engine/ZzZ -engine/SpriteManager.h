@@ -3,7 +3,7 @@
 #include "Texture.h"
 #include <vector>
 #include <algorithm>
-
+#include "Buffer.h"
 class SpriteManager
 {
 public:
@@ -18,6 +18,7 @@ public:
 	std::vector<float> getVerticesVector();
 	std::vector<unsigned int> getIndicesVector();
 	std::vector<ZZZ::Texture*> getTexturesVector();
+	void SpriteManager::drawSprites(ZZZ::Buffer* vertexBuffer, ZZZ::Buffer* indiceBuffer);
 
 private:
 	std::vector<Sprite*> sprites;
