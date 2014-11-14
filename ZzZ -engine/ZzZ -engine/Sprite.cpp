@@ -1,14 +1,17 @@
 #include "Sprite.h"
 
 
-Sprite::Sprite(std::string spriteName, float spriteWidth, float spriteHeight, ZZZ::Texture* spriteTexture)
+Sprite::Sprite(std::string spriteName, float spriteWidth, float spriteHeight, ZZZ::Texture* spriteTexture, int spriteID)
 {
+	
 	float base = 1;
 	scale = 1;
+	depth = 1;
+	id = spriteID;
 	width = spriteWidth;
 	height = spriteHeight;
 	name = spriteName;
-	depth = 1;
+	
 	//Vertex 1
 	vertices[0] = 0.0f; //x
 	vertices[1] = base * height; //y

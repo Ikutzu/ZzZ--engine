@@ -10,7 +10,7 @@
 class Sprite
 {
 public:
-	Sprite(std::string spriteName, float spriteWidth, float spriteHeight, ZZZ::Texture* spriteTexture);
+	Sprite(std::string spriteName, float spriteWidth, float spriteHeight, ZZZ::Texture* spriteTexture, int spriteID);
 	~Sprite();
 	void moveSprite(float x, float y);
 	void setPosition(float x, float y);
@@ -25,6 +25,7 @@ public:
 	unsigned int indices[6];
 	void setLayerDepth(int layerDepth);
 	void draw(ZZZ::Buffer* vertexBuffer, ZZZ::Buffer* indiceBuffer);
+	int getID() { return id; };
 
 private:
 
@@ -50,7 +51,7 @@ private:
 
 	*/
 	std::string name;
-	int depth;
+	int depth, id;
 	ZZZ::Texture* texture;
 	float scale;
 	float width, height;

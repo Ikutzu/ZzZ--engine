@@ -11,18 +11,20 @@ public:
 	~SpriteManager();
 
 	//Create a new sprite and add it to sprites vector
-	void newSprite(std::string name, float width, float height, ZZZ::Texture* spriteTexture);
+	int newSprite(std::string name, float width, float height, ZZZ::Texture* spriteTexture);
 	//Remove all sprites of given name from sprites vector
-	void deleteSprite(std::string name);
-	//Getters for vectors of specific attribute from all sprites.
-	std::vector<float> getVerticesVector();
-	std::vector<unsigned int> getIndicesVector();
-	std::vector<ZZZ::Texture*> getTexturesVector();
+	void deleteSprite(int spriteID);
 	void SpriteManager::drawSprites(ZZZ::Buffer* vertexBuffer, ZZZ::Buffer* indiceBuffer);
+
+	////Ei tarvita uudella tyylillä
+	////Getters for vectors of specific attribute from all sprites.
+	//std::vector<float> getVerticesVector();
+	//std::vector<unsigned int> getIndicesVector();
+	//std::vector<ZZZ::Texture*> getTexturesVector();
 
 private:
 	std::vector<Sprite*> sprites;
-
+	int nextID;
 	//spritejen batchaaminen
 	void batchSprites();
 };
