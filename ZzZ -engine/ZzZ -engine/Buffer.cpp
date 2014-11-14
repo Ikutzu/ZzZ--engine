@@ -34,14 +34,14 @@ void Buffer::pushData(unsigned size, void *data)
 	if (type == ZZZVERTEX)
 	{
 		glBindBuffer(GL_ARRAY_BUFFER, index);
-		glBufferSubData(GL_ARRAY_BUFFER, 0, size, &data);
+		glBufferSubData(GL_ARRAY_BUFFER, 0, size, data);
 		
 		if (glGetError() == GL_INVALID_VALUE)
 		{
 			this->size *= 2;
 			glDeleteBuffers(1, &index);
 			createBuffer(type);
-			glBufferSubData(GL_ARRAY_BUFFER, 0, size, &data);
+			glBufferSubData(GL_ARRAY_BUFFER, 0, size, data);
 		}
 
 		glBindBuffer(GL_ARRAY_BUFFER, 0u);
@@ -49,14 +49,14 @@ void Buffer::pushData(unsigned size, void *data)
 	if (type == ZZZINDEX)
 	{
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, index);
-		glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, size, &data);
+		glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, size, data);
 
 		if (glGetError() == GL_INVALID_VALUE)
 		{
 			this->size *= 2;
 			glDeleteBuffers(1, &index);
 			createBuffer(type);
-			glBufferSubData(GL_ARRAY_BUFFER, 0, size, &data);
+			glBufferSubData(GL_ARRAY_BUFFER, 0, size, data);
 		}
 
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0u);

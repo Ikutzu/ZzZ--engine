@@ -25,6 +25,7 @@ namespace ZZZ
 		bool isRunning;
 
 		SpriteManager spriteManager;
+		ResourceManager rm;
 
 	private:
 
@@ -43,7 +44,6 @@ namespace ZZZ
 
 		MSG msg;
 
-		ResourceManager rm;
 		Input input;
 	};
 }

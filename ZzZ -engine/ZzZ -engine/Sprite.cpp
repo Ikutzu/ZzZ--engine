@@ -1,5 +1,6 @@
 #include "Sprite.h"
 
+using namespace ZZZ;
 
 Sprite::Sprite(std::string spriteName, float spriteWidth, float spriteHeight, ZZZ::Texture* spriteTexture, int spriteID)
 {
@@ -15,33 +16,33 @@ Sprite::Sprite(std::string spriteName, float spriteWidth, float spriteHeight, ZZ
 	//Vertex 1
 	vertices[0] = 0.0f; //x
 	vertices[1] = base * height; //y
-	vertices[2] = 1.0f; //red
-	vertices[3] = 1.0f; //green
-	vertices[4] = 1.0f; //blue
+	vertices[2] = 0.0f; //red
+	vertices[3] = 0.0f; //green
+	vertices[4] = 0.0f; //blue
 	vertices[5] = 0.0f; //tex x
 	vertices[6] = 1.0f; //tex y
 	//Vertex 2
 	vertices[7] = 0.0f; //x
 	vertices[8] = 0.0f; //y
-	vertices[9] = 1.0f; //red
-	vertices[10] = 1.0f; //green
-	vertices[11] = 1.0f; //blue
+	vertices[9] = 0.0f; //red
+	vertices[10] = 0.0f; //green
+	vertices[11] = 0.0f; //blue
 	vertices[12] = 0.0f; //tex x 
 	vertices[13] = 0.0f; //tex y
 	//Vertex 3
 	vertices[14] = base * width; //x
 	vertices[15] = base * height; //y
-	vertices[16] = 1.0f; //red
-	vertices[17] = 1.0f; //green
-	vertices[18] = 1.0f; //blue
+	vertices[16] = 0.0f; //red
+	vertices[17] = 0.0f; //green
+	vertices[18] = 0.0f; //blue
 	vertices[19] = 1.0f; //tex x
 	vertices[20] = 1.0f; //tex y
 	//vertex 4
 	vertices[21] = base * width; //x
 	vertices[22] = 0.0f; //y
-	vertices[23] = 1.0f; //red
-	vertices[24] = 1.0f; //green
-	vertices[25] = 1.0f; //blue
+	vertices[23] = 0.0f; //red
+	vertices[24] = 0.0f; //green
+	vertices[25] = 0.0f; //blue
 	vertices[26] = 1.0f; //tex x
 	vertices[27] = 0.0f; //tex y
 
@@ -221,4 +222,5 @@ void Sprite::draw(ZZZ::Buffer* vertexBuffer, ZZZ::Buffer* indiceBuffer)
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, reinterpret_cast<GLvoid*>(0));
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+	Debugger::checkGLError("draw");
 }

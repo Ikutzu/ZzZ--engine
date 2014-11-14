@@ -26,6 +26,15 @@ int main()
 	testi.initialize("akkuna", semmone);
 	testi.setBackgroundColor(0.0f, 0.5f, 0.0f);
 
+	//siirretty mainista
+	Texture testiTex(testi.rm.load<TextureRes>("lode_test_in"));
+	int spriteID = testi.spriteManager.newSprite("testi", 300, 450, &testiTex);
+	Sprite* sprite1 = testi.spriteManager.getSprite(spriteID);
+
+	sprite1->moveSprite(100, 100);
+	sprite1->setPosition(250, 250);
+	sprite1->setScale(0.5f);
+
 	while (testi.isRunning)
 	{
 		testi.update();

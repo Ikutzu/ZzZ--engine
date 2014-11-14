@@ -1,5 +1,6 @@
 #include "SpriteManager.h"
 
+using namespace ZZZ; 
 
 SpriteManager::SpriteManager()
 {

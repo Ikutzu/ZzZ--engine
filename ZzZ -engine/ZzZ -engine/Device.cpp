@@ -20,9 +20,6 @@ void Device::initialize(std::string wName, RECT wClientCoord)
 	createBuffers();
 	createShader(wClientCoord);
 
-	//siirretty mainista
-	Texture testiTex(rm.load<TextureRes>("lode_test_in"));
-	spriteManager.newSprite("testi", 50, 150, &testiTex);
 }
 
 void Device::update()
@@ -42,22 +39,7 @@ void Device::update()
 	glClearColor(backgroundColor[0], backgroundColor[1], backgroundColor[2], backgroundColor[3]);
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	// kutsu juttuja esim buffer.pushData ja piirrot
-	//verticeBuffer.pushData(sizeof(spriteManager.getVerticesVector()), &spriteManager.getVerticesVector());
-	//indexBuffer.pushData(sizeof(spriteManager.getIndicesVector()), &spriteManager.getIndicesVector());
-
-
-	glBindBuffer(GL_ARRAY_BUFFER, *verticeBuffer.getIndex());
-
-	Shader::useShader();
-
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, *indexBuffer.getIndex());
-
-	drawElements();
-
-
-	glBindBuffer(GL_ARRAY_BUFFER, 0u);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0u);
+	spriteManager.drawSprites(&verticeBuffer, &indexBuffer);
 
 	SwapBuffers(gameWindow->hdc);
 	
