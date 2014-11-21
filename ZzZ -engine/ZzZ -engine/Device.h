@@ -8,6 +8,7 @@
 #include "Shader.h"
 #include "SpriteManager.h"
 #include "Input.h"
+#include "Timer.h"
 
 
 namespace ZZZ
@@ -43,6 +44,8 @@ namespace ZZZ
 		MSG msg;
 
 		Input input;
+		Timer timer;
+		float deltaTime;
 	};
 }
 #endif

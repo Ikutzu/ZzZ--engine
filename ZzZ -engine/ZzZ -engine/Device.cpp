@@ -9,6 +9,9 @@ void Device::initialize(std::string wName, RECT wClientCoord)
 	input = Input();
 	input.initialize(gameWindow->getWindowHandle());
 
+	timer = Timer(TimeUnit::second);
+	deltaTime = 0;
+
 	isRunning = true;
 
 	backgroundColor[0] = 0.0f;
@@ -23,6 +26,10 @@ void Device::initialize(std::string wName, RECT wClientCoord)
 
 void Device::update()
 {
+	float startTime = timer.elapsed();
+	if (1.0f / 1.0f / deltaTime < 60.0f)
+		Debugger::Print("FPS drop: ", (1.0f / 1.0f / deltaTime));
+
 	glUseProgram(*Shader::getProgram());
 
 	while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE) != 0)
@@ -45,7 +52,7 @@ void Device::update()
 	glUseProgram(0u);
 
 	//input test
-	if (input.isKeyPressed(ZZZ::Key::A))
+	if (input.isKeyPressed(Key::A))
 		Debugger::Print("Key pressed once: A");
 
 	if (input.isKeyDown(Key::Space))
@@ -55,6 +62,7 @@ void Device::update()
 	}
 
 	input.update();
+	deltaTime = timer.elapsed() - startTime;
 }
 
 void Device::setBackgroundColor(float red, float green, float blue)

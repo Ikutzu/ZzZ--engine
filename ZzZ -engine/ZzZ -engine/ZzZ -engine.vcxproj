@@ -95,6 +95,7 @@
     <ClCompile Include="SpriteManager.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureRes.cpp" />
+    <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Buffer.h" />
@@ -112,6 +113,7 @@
     <ClInclude Include="SpriteManager.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureRes.h" />
+    <ClInclude Include="Timer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
