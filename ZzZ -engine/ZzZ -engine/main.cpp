@@ -24,6 +24,7 @@ int main()
 
 	ZZZ::Device testi;
 	testi.initialize("akkuna", semmone);
+	testi.update();
 	testi.setBackgroundColor(0.0f, 0.5f, 0.0f);
 
 	//siirretty mainista
@@ -31,8 +32,8 @@ int main()
 	Texture testiTex("lode_test_in");
 	Texture testi2Tex("KhorneMark");
 	
-	Sprite sprite1("testi", 300, 450, &testiTex);
-	Sprite sprite2("mikaontama", 400, 300, &testiTex);
+	Sprite sprite1(&testiTex, 300, 450);
+	Sprite sprite2(&testiTex, 400, 300);
 	
 
 	sprite1.setPosition(175,0);

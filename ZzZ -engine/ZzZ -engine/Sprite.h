@@ -13,7 +13,7 @@ namespace ZZZ
 	class Sprite
 	{
 	public:
-		Sprite(std::string spriteName, float spriteWidth, float spriteHeight, ZZZ::Texture* spriteTexture);
+		Sprite(ZZZ::Texture* spriteTexture, float spriteWidth, float spriteHeight);
 		~Sprite();
 		void moveSprite(float x, float y);
 		void setPosition(float x, float y);
@@ -21,7 +21,6 @@ namespace ZZZ
 		void setScale(float x, float y);
 		void rotate(float angleInDegrees);
 		void setRotation(float angleInDegrees);
-		std::string getName();
 		void setTexture(ZZZ::Texture* spriteTexture);
 		ZZZ::Texture* getTexture();
 		int getDepth();
@@ -55,7 +54,6 @@ namespace ZZZ
 		bottom right, top left, top right;
 
 		*/
-		std::string name;
 		int depth, id;
 		ZZZ::Texture* texture;
 		float scale, scaleX, scaleY;

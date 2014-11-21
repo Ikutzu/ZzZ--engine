@@ -3,7 +3,7 @@
 
 using namespace ZZZ;
 
-Sprite::Sprite(std::string spriteName, float spriteWidth, float spriteHeight, ZZZ::Texture* spriteTexture)
+Sprite::Sprite(ZZZ::Texture* spriteTexture,float spriteWidth, float spriteHeight)
 {
 	
 	float base = 1;
@@ -13,7 +13,6 @@ Sprite::Sprite(std::string spriteName, float spriteWidth, float spriteHeight, ZZ
 	depth = 1;
 	width = spriteWidth;
 	height = spriteHeight;
-	name = spriteName;
 	currentAngle = 0;
 	
 	//Vertex 1
@@ -189,10 +188,6 @@ void Sprite::setRotation(float angleInDegrees)
 }
 
 
-std::string Sprite::getName()
-{
-	return name;
-}
 void Sprite::setTexture(ZZZ::Texture* spriteTexture)
 {
 	texture = spriteTexture;

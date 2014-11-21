@@ -27,8 +27,8 @@ void Device::initialize(std::string wName, RECT wClientCoord)
 void Device::update()
 {
 	float startTime = timer.elapsed();
-	if (1.0f / 1.0f / deltaTime < 60.0f)
-		Debugger::Print("FPS drop: ", (1.0f / 1.0f / deltaTime));
+	//if (1.0f / 1.0f / deltaTime < 60.0f)
+		Debugger::Print("FPS drop: ", ( deltaTime));
 
 	glUseProgram(*Shader::getProgram());
 
