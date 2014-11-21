@@ -27,15 +27,23 @@ int main()
 	testi.setBackgroundColor(0.0f, 0.5f, 0.0f);
 
 	//siirretty mainista
-	Texture testiTex(testi.rm.load<TextureRes>("lode_test_in"));
-	Texture testi2Tex(testi.rm.load<TextureRes>("KhorneMark"));
-	int spriteID = testi.spriteManager.newSprite("testi", 300, 450, &testiTex);
-	Sprite* sprite1 = testi.spriteManager.getSprite(spriteID);
+	
+	Texture testiTex("lode_test_in");
+	Texture testi2Tex("KhorneMark");
+	
+	Sprite sprite1("testi", 300, 450, &testiTex);
+	Sprite sprite2("mikaontama", 400, 300, &testiTex);
+	
 
-	sprite1->setPosition(175,0);
-	sprite1->moveSprite(100, 100);
-	sprite1->setTexture(&testi2Tex);
-	sprite1->setScale(1, 0.7);
+	sprite1.setPosition(175,0);
+	sprite1.moveSprite(100, 100);
+	sprite1.setTexture(&testi2Tex);
+	sprite1.setScale(1, 0.7);
+
+	sprite2.setPosition(175, 0);
+	sprite2.moveSprite(100, 100);
+	sprite2.setScale(1, 0.7);
+
 	float angle = 0;
 	while (testi.isRunning)
 	{
@@ -43,8 +51,10 @@ int main()
 		testi.update();
 		angle += 0.01;
 
-		sprite1->setRotation(angle);
-		sprite1->rotate(0.01);
+		sprite1.setRotation(angle);
+		sprite1.rotate(0.01);
+		sprite2.setRotation(angle);
+		sprite2.rotate(-0.01);
 	}
 
 	return 0;
@@ -52,20 +62,20 @@ int main()
 
 
 //logiin pitaisi tulla 2*RM_TEST_SIZE kpl resursseja
-void resourceManagerTest()
-{
-	ZZZ::ResourceManager rm = ZZZ::ResourceManager();
-	ZZZ::TextureRes* t[RM_TEST_SIZE];
-	ZZZ::ShaderRes* s[RM_TEST_SIZE];
-	for (int i = 0; i < RM_TEST_SIZE; i++)
-	{
-		std::ostringstream ss;
-		ss << i;
-		t[i] = rm.load<ZZZ::TextureRes>(ss.str());
-		s[i] = rm.load<ZZZ::ShaderRes>(ss.str());
-	}
-	rm.printAll();
-}
+//void resourceManagerTest()
+//{
+//	ZZZ::ResourceManager rm = ZZZ::ResourceManager();
+//	ZZZ::TextureRes* t[RM_TEST_SIZE];
+//	ZZZ::ShaderRes* s[RM_TEST_SIZE];
+//	for (int i = 0; i < RM_TEST_SIZE; i++)
+//	{
+//		std::ostringstream ss;
+//		ss << i;
+//		t[i] = rm.load<ZZZ::TextureRes>(ss.str());
+//		s[i] = rm.load<ZZZ::ShaderRes>(ss.str());
+//	}
+//	rm.printAll();
+//}
 
 
 //#ifndef WIN32_LEAN_AND_MEAN

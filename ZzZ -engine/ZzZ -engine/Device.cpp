@@ -6,7 +6,6 @@ using namespace ZZZ;
 void Device::initialize(std::string wName, RECT wClientCoord)
 {
 	gameWindow = new GameWindow(wName.c_str(), wClientCoord);
-	rm = ResourceManager();
 	input = Input();
 	input.initialize(gameWindow->getWindowHandle());
 
@@ -39,7 +38,7 @@ void Device::update()
 	glClearColor(backgroundColor[0], backgroundColor[1], backgroundColor[2], backgroundColor[3]);
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	spriteManager.drawSprites(&verticeBuffer, &indexBuffer);
+	SpriteManager::instance()->drawSprites(&verticeBuffer, &indexBuffer);
 
 	SwapBuffers(gameWindow->hdc);
 	
@@ -75,26 +74,4 @@ void Device::createShader(RECT windowCoordinates)
 {
 	if (Shader::newShader(nullptr, nullptr, windowCoordinates))
 		Debugger::Print("Shader creation failed");
-}
-
-void Device::drawElements()
-{
-	/*
-	std::vector<Texture*> textureVector = spriteManager.getTexturesVector();
-	std::vector<Texture*>::iterator textureit;
-	
-	for (textureit = textureVector.begin(); textureit != textureVector.end(); textureit++)
-//	for (int o = 0; 0 < textureVector->size(); o++)
-	{
-		int i = 0;
-		//Kaatuu tähän
-		if (textureit == textureVector.begin() || textureit != textureit - 1)
-		{
-			glBindTexture(GL_TEXTURE_2D, *(*textureit)->getIndex());
-		}
-		glDrawElements(GL_TRIANGLES, 6u, GL_UNSIGNED_INT, reinterpret_cast<GLvoid*>(24*i));
-
-		i++;
-	}
-	*/
 }

@@ -9,11 +9,11 @@ namespace ZZZ
 	class SpriteManager
 	{
 	public:
-		SpriteManager();
-		~SpriteManager();
 
+		static SpriteManager* instance();
+		
 		//Create a new sprite and add it to sprites vector
-		int newSprite(std::string name, float width, float height, ZZZ::Texture* spriteTexture);
+		void newSprite(Sprite* sprite);
 		//Remove all sprites of given name from sprites vector
 		void deleteSprite(int spriteID);
 		//Ask all sprites to draw themselfs
@@ -25,8 +25,13 @@ namespace ZZZ
 		//std::vector<float> getVerticesVector();
 		//std::vector<unsigned int> getIndicesVector();
 		//std::vector<ZZZ::Texture*> getTexturesVector();
+	protected:
+		SpriteManager();
+		~SpriteManager();
 
 	private:
+
+		static SpriteManager* instanceObj;
 		std::vector<Sprite*> sprites;
 		int nextID;
 		//spritejen batchaaminen

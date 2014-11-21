@@ -1,10 +1,13 @@
 #include "Texture.h"
-
+#include "ResourceManager.h"
 using namespace ZZZ;
 
-Texture::Texture(TextureRes* resource)
+Texture::Texture(std::string fileName)
 {
-	createTexture(resource);
+	ResourceManager* tempRm = ResourceManager::instance();
+	tempRm->load<TextureRes>(fileName);
+
+	createTexture(tempRm->load<TextureRes>(fileName));
 }
 
 Texture::~Texture()

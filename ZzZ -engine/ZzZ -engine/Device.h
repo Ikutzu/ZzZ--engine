@@ -21,18 +21,16 @@ namespace ZZZ
 
 		void setBackgroundColor(float red, float green, float blue);
 
+		Texture* loadTexture(std::string textureName);
 
 		bool isRunning;
 
-		SpriteManager spriteManager;
-		ResourceManager rm;
 
 	private:
 
 		void createBuffers();
 		void createShader(RECT windowCoordinates);
 
-		void drawElements();
 
 
 		float backgroundColor[4];

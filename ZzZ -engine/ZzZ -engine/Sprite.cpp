@@ -1,8 +1,9 @@
 #include "Sprite.h"
+#include "SpriteManager.h"
 
 using namespace ZZZ;
 
-Sprite::Sprite(std::string spriteName, float spriteWidth, float spriteHeight, ZZZ::Texture* spriteTexture, int spriteID)
+Sprite::Sprite(std::string spriteName, float spriteWidth, float spriteHeight, ZZZ::Texture* spriteTexture)
 {
 	
 	float base = 1;
@@ -10,7 +11,6 @@ Sprite::Sprite(std::string spriteName, float spriteWidth, float spriteHeight, ZZ
 	scaleX = 1;
 	scaleY = 1;
 	depth = 1;
-	id = spriteID;
 	width = spriteWidth;
 	height = spriteHeight;
 	name = spriteName;
@@ -61,6 +61,7 @@ Sprite::Sprite(std::string spriteName, float spriteWidth, float spriteHeight, ZZ
 	originX = width / 2;
 	originY = height / 2;
 
+	SpriteManager::instance()->newSprite(this);
 }
 
 

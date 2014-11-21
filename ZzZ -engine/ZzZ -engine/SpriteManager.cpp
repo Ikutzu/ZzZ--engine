@@ -2,23 +2,34 @@
 
 using namespace ZZZ; 
 
+SpriteManager* SpriteManager::instanceObj = NULL;
+
+SpriteManager* SpriteManager::instance()
+{
+	if (!instanceObj)
+	{
+		instanceObj = new SpriteManager;
+	}
+	return instanceObj;
+}
+
 SpriteManager::SpriteManager()
 {
 	nextID = 0;
 }
 
-
 SpriteManager::~SpriteManager()
 {
 }
-int SpriteManager::newSprite(std::string name, float width, float height, ZZZ::Texture* spriteTexture)
+
+void SpriteManager::newSprite(Sprite* sprite)
 {
 	//Create a new sprite, allocate it into sprites vector and batch the sprites.
 	
 	nextID++;
-	sprites.push_back(new Sprite(name, width, height, spriteTexture, nextID));
+	sprites.push_back(sprite);
+	sprite->setID(nextID);
 	batchSprites();
-	return nextID;
 }
 void SpriteManager::deleteSprite(int spriteID)
 {
@@ -37,6 +48,7 @@ void SpriteManager::deleteSprite(int spriteID)
 void SpriteManager::drawSprites(ZZZ::Buffer* vertexBuffer, ZZZ::Buffer* indiceBuffer)
 {
 	//Call draw for all 
+
 	for (int i = 0; i < sprites.size(); i++)
 	{
 		sprites[i]->draw(vertexBuffer, indiceBuffer);

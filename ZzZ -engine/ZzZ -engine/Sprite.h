@@ -13,7 +13,7 @@ namespace ZZZ
 	class Sprite
 	{
 	public:
-		Sprite(std::string spriteName, float spriteWidth, float spriteHeight, ZZZ::Texture* spriteTexture, int spriteID);
+		Sprite(std::string spriteName, float spriteWidth, float spriteHeight, ZZZ::Texture* spriteTexture);
 		~Sprite();
 		void moveSprite(float x, float y);
 		void setPosition(float x, float y);
@@ -29,8 +29,9 @@ namespace ZZZ
 		unsigned int indices[6];
 		void setLayerDepth(int layerDepth);
 		void draw(ZZZ::Buffer* vertexBuffer, ZZZ::Buffer* indiceBuffer);
+		void setID(int spriteID){ id = spriteID; }
 		int getID() { return id; };
-
+		
 	private:
 
 

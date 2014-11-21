@@ -9,7 +9,7 @@ namespace ZZZ
 	class Texture
 	{
 	public:
-		Texture(TextureRes* resource);
+		Texture(std::string fileName);
 		~Texture();
 
 		GLuint* getIndex(){ return &index; };

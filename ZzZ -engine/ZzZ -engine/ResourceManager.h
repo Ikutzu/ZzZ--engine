@@ -19,12 +19,16 @@ namespace ZZZ
 	class ResourceManager
 	{
 	public:
+		static ResourceManager* instance();
+
 		void printAll();
 
 		template<typename T>T* load(std::string fileName);
 		template<typename T>T* find(size_t hash);
-
+		
 	private:
+		
+		static ResourceManager* instanceObj;
 		typedef std::map<size_t, Resource*> mapType;
 		mapType storage;
 	};
