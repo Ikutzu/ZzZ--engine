@@ -17,33 +17,23 @@ namespace ZZZ
 	{
 	public:
 		void initialize(std::string wName, RECT wClientCoord);
-
-		void update();
-
 		void setBackgroundColor(float red, float green, float blue);
-
 		Texture* loadTexture(std::string textureName);
+		void update();
+		float getDeltaTime() { return deltaTime; }
 
+		Input input;
 		bool isRunning;
 
-
 	private:
-
 		void createBuffers();
 		void createShader(RECT windowCoordinates);
 
-
-
 		float backgroundColor[4];
-
 		GameWindow* gameWindow;
-
 		Buffer verticeBuffer;
 		Buffer indexBuffer;
-
 		MSG msg;
-
-		Input input;
 		Timer timer;
 		float deltaTime;
 	};

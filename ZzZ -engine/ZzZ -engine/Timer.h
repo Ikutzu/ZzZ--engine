@@ -5,7 +5,8 @@ namespace ZZZ
 {
 	enum TimeUnit
 	{
-		hour, minute, second, milli, nano
+		unset = -1, 
+		hour, minute, second, millisecond, microsecond, nanosecond
 	};
 
 	class Timer
@@ -15,7 +16,7 @@ namespace ZZZ
 		~Timer();
 
 		void reset();
-		float elapsed();
+		float elapsed(TimeUnit timeUnit = unset);
 
 	private:
 		TimeUnit unit;

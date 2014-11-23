@@ -43,7 +43,7 @@ namespace ZZZ
 		Num7,         // 7 key
 		Num8,         // 8 key
 		Num9,         // 9 key
-		Escape,    // Escape key
+		Escape,       // Escape key
 		LControl,     // left Control key
 		LShift,       // left Shift key
 		LAlt,         // left Alt key
@@ -125,7 +125,9 @@ namespace ZZZ
 		bool initialize(HWND* windowHandle);
 		void update();
 		bool isKeyDown(Key key);
+		bool isKeyUp(Key key);
 		bool isKeyPressed(Key key);
+		bool isKeyReleased(Key key);
 		POINT getCursorPos(bool asScreenCoordinates = false);
 
 	private:

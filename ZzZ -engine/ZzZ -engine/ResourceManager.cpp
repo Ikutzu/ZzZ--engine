@@ -7,7 +7,8 @@ ResourceManager* ResourceManager::instanceObj = NULL;
 
 void ResourceManager::printAll()
 {
-	for (mapType::iterator it = storage.begin(); it != storage.end(); it++)
+	ResourceManager* temp = instance();
+	for (mapType::iterator it = temp->storage.begin(); it != temp->storage.end(); it++)
 	{
 		ostringstream ss;
 		ss << (*it).first << " | " << (*it).second->getFullPath();

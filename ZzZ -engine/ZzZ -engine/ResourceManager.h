@@ -21,7 +21,7 @@ namespace ZZZ
 	public:
 		static ResourceManager* instance();
 
-		void printAll();
+		static void printAll();
 
 		template<typename T>T* load(std::string fileName);
 		template<typename T>T* find(size_t hash);

@@ -31,7 +31,7 @@ int main()
 	
 	Texture testiTex("lode_test_in");
 	Texture testi2Tex("KhorneMark");
-	
+
 	Sprite sprite1(&testiTex, 300, 450);
 	Sprite sprite2(&testiTex, 400, 300);
 	
@@ -45,18 +45,47 @@ int main()
 	sprite2.moveSprite(100, 100);
 	sprite2.setScale(1, 0.7);
 
+	std::vector<Sprite*> testilista;
+	for (int i = 0; i < 10; i++)
+		testilista.push_back(new Sprite(&Texture("Koala"), 128, 128));
+
+	ResourceManager::printAll();
 	float angle = 0;
 	while (testi.isRunning)
 	{
+		// input testi, logiin ei saisi tulla kahtaa samaa riviä peräkkäin
+		if (testi.input.isKeyPressed(Key::A))
+			Debugger::Print("pressed Key::A");
+		if (testi.input.isKeyReleased(Key::A))
+			Debugger::Print("released Key::A");
 
-		testi.update();
-		angle += 0.01;
+		// kursorin koordinaatit ikkunan suhteen
+		if (testi.input.isKeyDown(Key::Space))
+		{
+			Debugger::Print("x ", testi.input.getCursorPos().x);
+			Debugger::Print("y ", testi.input.getCursorPos().y);
+		}
+
+		// input pitää päivittää mahdollisimman pian viimeisen input-kutsun jälkeen
+		testi.input.update();
+
+
+		angle += 0.01 * testi.getDeltaTime();
+		if (angle > 360)
+			angle -= 360;
 
 		sprite1.setRotation(angle);
-		sprite1.rotate(0.01);
 		sprite2.setRotation(angle);
-		sprite2.rotate(-0.01);
+
+		//deltaTime indikaattori, mitä isompi dt, sitä kauemmas oikealle koalat piirtyvät
+		for (int i = 0; i < testilista.size(); i++)
+			testilista.at(i)->setPosition(40 + i* testi.getDeltaTime(), 40);
+		
+		testi.update();
 	}
+	for (int i = 0; i < testilista.size(); i++)
+		delete testilista.at(i);
+	testilista.clear();
 
 	return 0;
 }

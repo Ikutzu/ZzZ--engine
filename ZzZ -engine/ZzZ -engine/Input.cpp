@@ -149,8 +149,22 @@ bool Input::isKeyDown(Key key)
 }
 
 
-// true if key was down and is released
+bool Input::isKeyUp(Key key)
+{
+	return !isKeyDown(key);
+}
+
+
+// Palauttaa true, kun n‰pp‰in painetaan pohjaan.
+// Jos n‰pp‰in j‰tet‰‰n pohjaan, palauttaa seuraavalla kerralla falsen.
 bool Input::isKeyPressed(Key key)
+{
+	return !lastState[key] && isKeyDown(key);
+}
+
+
+// Palauttaa true, kun pohjassa pidetty n‰pp‰in vapautetaan.
+bool Input::isKeyReleased(Key key)
 {
 	return lastState[key] && !isKeyDown(key);
 }
