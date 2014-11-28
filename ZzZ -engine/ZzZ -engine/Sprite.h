@@ -22,14 +22,22 @@ namespace ZZZ
 		void rotate(float angleInDegrees);
 		void setRotation(float angleInDegrees);
 		void setTexture(ZZZ::Texture* spriteTexture);
+		void setLayerDepth(int layerDepth);
+		void setID(int spriteID){ id = spriteID; }
+
 		ZZZ::Texture* getTexture();
 		int getDepth();
+		int getID() { return id; };
+		float getLeft();
+		float getTop();
+		float getRight();
+		float getBottom();
+		
+		const bool intersects(Sprite* collider);
+		void draw(ZZZ::Buffer* vertexBuffer, ZZZ::Buffer* indiceBuffer);
+
 		float vertices[28];
 		unsigned int indices[6];
-		void setLayerDepth(int layerDepth);
-		void draw(ZZZ::Buffer* vertexBuffer, ZZZ::Buffer* indiceBuffer);
-		void setID(int spriteID){ id = spriteID; }
-		int getID() { return id; };
 		
 	private:
 

@@ -204,6 +204,104 @@ ZZZ::Texture* Sprite::getTexture()
 	return texture;
 }
 
+float Sprite::getLeft()
+{
+	float temp;
+
+	//left
+	for (int i = 0; i < 4; i++)
+	{
+		if ((i == 0) || (temp > vertices[i * 7]))
+			temp = vertices[i * 7];
+	}
+	return temp;
+}
+float Sprite::getTop()
+{
+	float temp = 0;
+
+	//top
+	for (int i = 0; i < 4; i++)
+	{
+		if ((i == 0) || (temp > vertices[i * 7 + 1]))
+			temp = vertices[i * 7 + 1];
+	}
+	return temp;
+}
+float Sprite::getRight()
+{
+	float temp = 0;
+
+	//right
+	for (int i = 0; i < 4; i++)
+	{
+		if ((i == 0) || (temp < vertices[i * 7]))
+			temp = vertices[i * 7];
+	}
+	return temp;
+}
+float Sprite::getBottom()
+{
+	float temp = 0;
+
+	//right
+	for (int i = 0; i < 4; i++)
+	{
+		if ((i == 0) || (temp < vertices[i * 7 + 1]))
+			temp = vertices[i * 7 + 1];
+	}
+	return temp;
+}
+
+const bool Sprite::intersects(Sprite* collider)
+{
+	float colliderArray[4] = {
+							collider->getLeft(),
+							collider->getTop(),
+							collider->getRight(),
+							collider->getBottom() 
+						  };
+
+	float ownArray[4] = {
+							this->getLeft(),
+							this->getTop(),
+							this->getRight(),
+							this->getBottom()
+	};
+
+	float tempArray[4];
+
+	//intersect rectangle left side
+	if (ownArray[0] >= colliderArray[0])
+		tempArray[0] = ownArray[0];
+	else
+		tempArray[0] = colliderArray[0];
+
+	//intersect rectangle top side
+	if (ownArray[1] >= colliderArray[1])
+		tempArray[1] = ownArray[1];
+	else
+		tempArray[1] = colliderArray[1];
+
+	//intersect rectangle right side
+	if (ownArray[2] < colliderArray[2])
+		tempArray[2] = ownArray[2];
+	else
+		tempArray[2] = colliderArray[2];
+
+	//intersect rectangle bottom side
+	if (ownArray[3] < colliderArray[3])
+		tempArray[3] = ownArray[3];
+	else
+		tempArray[3] = colliderArray[3];
+
+	//if left < right and if top < bottom, an intersection has happened => return true
+	if ((tempArray[0] < tempArray[2]) && (tempArray[1] < tempArray[3]))
+		return true;
+	else
+		return false;
+}
+
 void Sprite::draw(ZZZ::Buffer* vertexBuffer, ZZZ::Buffer* indiceBuffer)
 {
 	vertexBuffer->pushData(sizeof(vertices), &vertices);

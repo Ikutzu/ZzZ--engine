@@ -35,14 +35,10 @@ int main()
 	Sprite sprite2(&testiTex, 400, 300);
 	
 
-	sprite1.setPosition(175,0);
-	sprite1.moveSprite(100, 100);
+	sprite1.setPosition(100,100);
 	sprite1.setTexture(&testi2Tex);
-	sprite1.setScale(1, 0.7);
 
-	sprite2.setPosition(175, 0);
-	sprite2.moveSprite(100, 100);
-	sprite2.setScale(1, 0.7);
+	sprite2.setPosition(500, 100);
 
 	std::vector<Sprite*> testilista;
 	for (int i = 0; i < 10; i++)
@@ -73,6 +69,10 @@ int main()
 		// input pitää päivittää mahdollisimman pian viimeisen input-kutsun jälkeen
 		testi.input.update();
 
+		if (sprite1.intersects(&sprite2))
+			Debugger::Print("Spritet törmää");
+		else
+			Debugger::Print("Spritet ei törmää");
 
 		angle += 0.01 * timer.getDeltaTime();
 		if (angle > 360)
