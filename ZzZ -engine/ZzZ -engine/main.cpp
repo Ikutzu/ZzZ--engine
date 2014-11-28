@@ -1,10 +1,9 @@
-
-#include "GameWindow.h"
 #include "Device.h"
 #include "debugger.h"
 #include "Shader.h"
 #include "ResourceManager.h"
 #include "Sprite.h"
+#include "Timer.h"
 #include <sstream>
 
 static const int RM_TEST_SIZE = 50;
