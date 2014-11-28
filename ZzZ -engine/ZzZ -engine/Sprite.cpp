@@ -244,7 +244,7 @@ float Sprite::getBottom()
 {
 	float temp = 0;
 
-	//right
+	//bottom
 	for (int i = 0; i < 4; i++)
 	{
 		if ((i == 0) || (temp < vertices[i * 7 + 1]))

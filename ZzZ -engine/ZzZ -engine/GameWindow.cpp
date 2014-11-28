@@ -30,7 +30,12 @@ GameWindow::GameWindow(LPCSTR wName, RECT wClientCoord)
 		MessageBox(NULL, "FAIL rekisteri", "rekisteriFAIL", NULL);
 	}
 
-	AdjustWindowRectEx(&wClientCoord, WS_CAPTION, false, WS_EX_LEFT);
+	AdjustWindowRectEx(&wClientCoord, WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU, false, WS_EX_LEFT);
+
+	wClientCoord.bottom -= wClientCoord.top;
+	wClientCoord.right -= wClientCoord.left;
+	wClientCoord.top = 0;
+	wClientCoord.left = 0;
 
 	hWnd = CreateWindowEx(WS_EX_LEFT, "GameWindowClass", wName, WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU, wClientCoord.left, wClientCoord.top, wClientCoord.right, wClientCoord.bottom, NULL, NULL, hInstance, NULL);
 	ShowWindow(hWnd, SW_SHOWNORMAL);

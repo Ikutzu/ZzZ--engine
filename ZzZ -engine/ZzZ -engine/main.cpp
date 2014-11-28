@@ -16,8 +16,8 @@ int main()
 	//resourceManagerTest();
 
 	RECT semmone;
-	semmone.left = 40;
-	semmone.top = 40;
+	semmone.left = 0;
+	semmone.top = 0;
 	semmone.bottom = 600;
 	semmone.right = 800;
 
@@ -32,7 +32,7 @@ int main()
 	Texture testi2Tex("KhorneMark");
 
 	Sprite sprite1(&testiTex, 300, 450);
-	Sprite sprite2(&testiTex, 400, 300);
+	Sprite sprite2(&testiTex, 300, 400);
 	
 
 	sprite1.setPosition(100,100);
@@ -69,11 +69,6 @@ int main()
 		// input pitää päivittää mahdollisimman pian viimeisen input-kutsun jälkeen
 		testi.input.update();
 
-		if (sprite1.intersects(&sprite2))
-			Debugger::Print("Spritet törmää");
-		else
-			Debugger::Print("Spritet ei törmää");
-
 		angle += 0.01 * timer.getDeltaTime();
 		if (angle > 360)
 			angle -= 360;
@@ -83,7 +78,20 @@ int main()
 		//deltaTime indikaattori, mitä isompi dt, sitä kauemmas oikealle koalat piirtyvät
 		for (int i = 0; i < testilista.size(); i++)
 			testilista.at(i)->setPosition(40 + i* timer.getDeltaTime(), 40);
-		
+
+		if (testi.input.isKeyPressed(Key::Space))
+		{
+			Debugger::Print("x ", testi.input.getCursorPos().x);
+			Debugger::Print("y ", testi.input.getCursorPos().y);
+		}
+		if (sprite1.intersects(&sprite2))
+			Debugger::Print("Spritet törmää");
+		else
+			Debugger::Print("Spritet ei törmää");
+
+		if (sprite2.contains(testi.input.getCursorPos().x, testi.input.getCursorPos().y))
+			Debugger::Print("Nyt on sprite 1. sisässä hiiri");
+
 		testi.update();
 		timer.setDeltaTime();
 	}

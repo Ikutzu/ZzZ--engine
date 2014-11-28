@@ -39,7 +39,6 @@ void SpriteManager::deleteSprite(int spriteID)
 		if (spriteID == sprites[i]->getID())
 			sprites.erase(sprites.begin() + i);
 
-		i--;
 	}
 
 	batchSprites();
