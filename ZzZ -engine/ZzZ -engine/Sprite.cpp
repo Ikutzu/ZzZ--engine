@@ -66,6 +66,7 @@ Sprite::Sprite(ZZZ::Texture* spriteTexture,float spriteWidth, float spriteHeight
 
 Sprite::~Sprite()
 {
+	SpriteManager::instance()->deleteSprite(this->getID);
 }
 void Sprite::setLayerDepth(int layerDepth)
 {
