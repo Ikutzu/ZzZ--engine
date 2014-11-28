@@ -253,6 +253,21 @@ float Sprite::getBottom()
 	return temp;
 }
 
+const bool Sprite::contains(float x, float y)
+{
+	float ownArray[4] = {
+		this->getLeft(),
+		this->getTop(),
+		this->getRight(),
+		this->getBottom()
+	};
+
+	if (((ownArray[0] < x) && (ownArray[2] > x)) && ((ownArray[1] < y) && (ownArray[3] > y)))
+		return true;
+	else
+		return false;
+}
+
 const bool Sprite::intersects(Sprite* collider)
 {
 	float colliderArray[4] = {

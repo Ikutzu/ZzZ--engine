@@ -33,6 +33,7 @@ namespace ZZZ
 		float getRight();
 		float getBottom();
 		
+		const bool contains(float x, float y);
 		const bool intersects(Sprite* collider);
 		void draw(ZZZ::Buffer* vertexBuffer, ZZZ::Buffer* indiceBuffer);
 
