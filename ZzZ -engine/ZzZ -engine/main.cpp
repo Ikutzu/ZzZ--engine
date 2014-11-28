@@ -48,6 +48,9 @@ int main()
 	for (int i = 0; i < 10; i++)
 		testilista.push_back(new Sprite(&Texture("Koala"), 128, 128));
 
+
+	sprite1.setLayerDepth(2);
+
 	ResourceManager::printAll();
 	float angle = 0;
 	while (testi.isRunning)
@@ -74,7 +77,6 @@ int main()
 		angle += 0.01 * timer.getDeltaTime();
 		if (angle > 360)
 			angle -= 360;
-
 		sprite1.setRotation(angle);
 		sprite2.setRotation(angle);
 

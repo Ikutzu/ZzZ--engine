@@ -20,6 +20,7 @@ namespace ZZZ
 		void SpriteManager::drawSprites(ZZZ::Buffer* vertexBuffer, ZZZ::Buffer* indiceBuffer);
 		//Return handle to a sprite
 		Sprite* getSprite(int spriteID);
+		void batchSprites();
 		////Ei tarvita uudella tyylillä
 		////Getters for vectors of specific attribute from all sprites.
 		//std::vector<float> getVerticesVector();
@@ -35,7 +36,6 @@ namespace ZZZ
 		std::vector<Sprite*> sprites;
 		int nextID;
 		//spritejen batchaaminen
-		void batchSprites();
 	};
 
 	/*

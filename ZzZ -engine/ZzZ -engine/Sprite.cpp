@@ -70,6 +70,7 @@ Sprite::~Sprite()
 void Sprite::setLayerDepth(int layerDepth)
 {
 	depth = layerDepth;
+	SpriteManager::instance()->batchSprites();
 }
 
 void Sprite::moveSprite(float x, float y)
