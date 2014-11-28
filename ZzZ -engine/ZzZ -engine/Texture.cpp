@@ -5,8 +5,6 @@ using namespace ZZZ;
 Texture::Texture(std::string fileName)
 {
 	ResourceManager* tempRm = ResourceManager::instance();
-	tempRm->load<TextureRes>(fileName);
-
 	createTexture(tempRm->load<TextureRes>(fileName));
 }
 
