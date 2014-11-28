@@ -27,7 +27,7 @@ int main()
 	testi.update();
 	testi.setBackgroundColor(0.0f, 0.5f, 0.0f);
 
-	//siirretty mainista
+	Timer timer = Timer(millisecond);
 	
 	Texture testiTex("lode_test_in");
 	Texture testi2Tex("KhorneMark");
@@ -53,6 +53,8 @@ int main()
 	float angle = 0;
 	while (testi.isRunning)
 	{
+		timer.startDeltaTime();
+
 		// input testi, logiin ei saisi tulla kahtaa samaa riviä peräkkäin
 		if (testi.input.isKeyPressed(Key::A))
 			Debugger::Print("pressed Key::A");
@@ -70,7 +72,7 @@ int main()
 		testi.input.update();
 
 
-		angle += 0.01 * testi.getDeltaTime();
+		angle += 0.01 * timer.getDeltaTime();
 		if (angle > 360)
 			angle -= 360;
 
@@ -79,9 +81,10 @@ int main()
 
 		//deltaTime indikaattori, mitä isompi dt, sitä kauemmas oikealle koalat piirtyvät
 		for (int i = 0; i < testilista.size(); i++)
-			testilista.at(i)->setPosition(40 + i* testi.getDeltaTime(), 40);
+			testilista.at(i)->setPosition(40 + i* timer.getDeltaTime(), 40);
 		
 		testi.update();
+		timer.setDeltaTime();
 	}
 	for (int i = 0; i < testilista.size(); i++)
 		delete testilista.at(i);

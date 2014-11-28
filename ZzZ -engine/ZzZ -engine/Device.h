@@ -20,7 +20,7 @@ namespace ZZZ
 		void setBackgroundColor(float red, float green, float blue);
 		Texture* loadTexture(std::string textureName);
 		void update();
-		float getDeltaTime() { return deltaTime; }
+		//float getDeltaTime() { return deltaTime; }
 
 		Input input;
 		bool isRunning;
@@ -34,8 +34,8 @@ namespace ZZZ
 		Buffer verticeBuffer;
 		Buffer indexBuffer;
 		MSG msg;
-		Timer timer;
-		float deltaTime;
+		//Timer timer;
+		//float deltaTime;
 	};
 }
 #endif

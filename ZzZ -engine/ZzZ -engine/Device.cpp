@@ -9,9 +9,6 @@ void Device::initialize(std::string wName, RECT wClientCoord)
 	input = Input();
 	input.initialize(gameWindow->getWindowHandle());
 
-	timer = Timer(TimeUnit::millisecond);
-	deltaTime = 0;
-
 	isRunning = true;
 
 	backgroundColor[0] = 0.0f;
@@ -26,8 +23,6 @@ void Device::initialize(std::string wName, RECT wClientCoord)
 
 void Device::update()
 {
-	float startTime = timer.elapsed();
-
 	glUseProgram(*Shader::getProgram());
 
 	while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE) != 0)
@@ -48,8 +43,6 @@ void Device::update()
 	SwapBuffers(gameWindow->hdc);
 	
 	glUseProgram(0u);
-
-	deltaTime = timer.elapsed() - startTime;
 }
 
 void Device::setBackgroundColor(float red, float green, float blue)
