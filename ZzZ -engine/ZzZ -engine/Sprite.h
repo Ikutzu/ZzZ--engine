@@ -15,16 +15,27 @@ namespace ZZZ
 	public:
 		Sprite(ZZZ::Texture* spriteTexture, float spriteWidth, float spriteHeight);
 		~Sprite();
+		// Moves sprite by given ammount
 		void moveSprite(float x, float y);
+		// Sets absolute position according to upper left corner
 		void setPosition(float x, float y);
+		// Changes the common Scale
 		void setScale(float spriteScale);
+		// Changes the scale of width and height separately
 		void setScale(float x, float y);
+		// Rotates the sprite
 		void rotate(float angleInDegrees);
+		// Changes the rotation to absolute value
 		void setRotation(float angleInDegrees);
+		// Changes the Texture used
 		void setTexture(ZZZ::Texture* spriteTexture);
+		// Changes coordinates for the edges of the sprite
 		void setTextureCoordinates(float left, float top, float right, float bottom);
+		// Higher depth sprites are drawn first
 		void setLayerDepth(int layerDepth);
+		// Used by SpriteManager
 		void setID(int spriteID){ id = spriteID; }
+		// Colour values between 0 and 255
 		void setColour(float red, float green, float blue);
 		
 		ZZZ::Texture* getTexture();

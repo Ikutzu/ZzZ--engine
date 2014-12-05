@@ -153,16 +153,18 @@ int main()
 		//Despawn Koala
 		if (testi.input.isKeyPressed(Key::MouseLeft))
 		{
-			int dii = 0;
-			for (std::vector<Sprite*>::iterator i = koalaFarmi.begin(); i < koalaFarmi.end(); i++)
+			std::vector<Sprite*>::iterator i;
+			for (i = koalaFarmi.begin(); i != koalaFarmi.end();)
 			{
-				if (koalaFarmi[dii]->contains(testi.input.getCursorPos().x, testi.input.getCursorPos().y))
+				if ((*i)->contains(testi.input.getCursorPos().x, testi.input.getCursorPos().y))
 				{
-					Debugger::Print("Ny");
-					delete koalaFarmi.at(dii);
+					delete *i;
+					i = koalaFarmi.erase(i);
 				}
-				dii++;
+				else
+					i++;
 			}
+		koalaFarmi.shrink_to_fit();
 		}
 		
 		if (testi.input.isKeyPressed(Key::MouseMiddle))
@@ -174,11 +176,33 @@ int main()
 			testi.setBackgroundColor(r, g, b);
 
 		}
+		{
+			int x = std::rand() % 600;
+			int y = std::rand() % 800;
+			float tx = std::rand() % 512;
+			float ty = std::rand() % 512;
+			float r = std::rand() % 255;
+			float g = std::rand() % 255;
+			float b = std::rand() % 255;
+			Sprite* koala = new Sprite(&koalaTexture, 128, 128);
+			koala->setPosition(x, y);
+			koala->setTextureCoordinates(0.0f, 0.0f, tx, ty);
+			koala->setColour(r, g, b);
+			koalaFarmi.push_back(koala);
+		}
+		int joku = koalaFarmi.size();
+		char jokuc[128];
+		itoa(joku, jokuc, 10 );
+		std::string vittunytoikeasti = jokuc;
+		vittunytoikeasti += "\n";
+		OutputDebugString(vittunytoikeasti.c_str());
+
 
 		testi.input.update();
 		//Do-things
 		testi.update();
 		timer.setDeltaTime();
+		_CrtCheckMemory();
 	}
 
 	return 0;
