@@ -1,0 +1,1 @@
+Solution configurationia vaihtaessa buildaa engine aina erikseen ennen demoa.
