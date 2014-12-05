@@ -87,14 +87,14 @@ int main()
 		//Scale Up
 		if (testi.input.isKeyDown(Key::R))
 		{
-			scale += 0.01;
+			scale += 0.001 * timer.getDeltaTime();
 			sprite1.setScale(scale);
 		}
 
 		//Scale Down
 		if (testi.input.isKeyDown(Key::F))
 		{
-			scale -= 0.01;
+			scale -= 0.001 * timer.getDeltaTime();
 			sprite1.setScale(scale);
 		}
 
