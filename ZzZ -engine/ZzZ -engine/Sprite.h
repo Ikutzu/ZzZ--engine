@@ -25,6 +25,7 @@ namespace ZZZ
 		void setTextureCoordinates(float left, float top, float right, float bottom);
 		void setLayerDepth(int layerDepth);
 		void setID(int spriteID){ id = spriteID; }
+		void setColour(float red, float green, float blue);
 		
 		ZZZ::Texture* getTexture();
 		int getDepth();

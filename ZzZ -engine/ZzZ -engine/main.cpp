@@ -24,7 +24,7 @@ int main()
 	ZZZ::Device testi;
 	testi.initialize("akkuna", semmone);
 	testi.update();
-	testi.setBackgroundColor(0.0f, 0.5f, 0.0f);
+	testi.setBackgroundColor(0.0f, 125.0f, 0.0f);
 
 	Timer timer = Timer(millisecond);
 	
@@ -139,9 +139,13 @@ int main()
 			int y = std::rand() % 800;
 			float tx = std::rand() % 512;
 			float ty = std::rand() % 512;
+			float r = std::rand() % 255;
+			float g = std::rand() % 255;
+			float b = std::rand() % 255;
 			Sprite* koala = new Sprite(&koalaTexture, 128, 128);
 			koala->setPosition(x, y);
 			koala->setTextureCoordinates(0.0f, 0.0f, tx, ty);
+			koala->setColour(r, g, b);
 			koalaFarmi.push_back(koala);
 	
 		}
@@ -160,17 +164,16 @@ int main()
 				dii++;
 			}
 		}
+		
+		if (testi.input.isKeyPressed(Key::MouseMiddle))
+		{
 
+			float r = std::rand() % 255;
+			float g = std::rand() % 255;
+			float b = std::rand() % 255;
+			testi.setBackgroundColor(r, g, b);
 
-
-
-
-
-
-
-
-
-
+		}
 
 		testi.input.update();
 		//Do-things

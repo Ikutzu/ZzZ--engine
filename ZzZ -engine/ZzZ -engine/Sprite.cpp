@@ -179,7 +179,24 @@ void Sprite::setRotation(float angleInDegrees)
 	vertices[22] = y + originY;
 
 }
-
+void Sprite::setColour(float red, float green, float blue)
+{
+	red = red / 255;
+	green = green / 255;
+	blue = blue / 255;
+	vertices[2] = red; //red
+	vertices[3] = green; //green
+	vertices[4] = blue; //blue
+	vertices[9] = red; //red
+	vertices[10] = green; //green
+	vertices[11] = blue; //blue
+	vertices[16] = red; //red
+	vertices[17] = green; //green
+	vertices[18] = blue; //blue
+	vertices[23] = red; //red
+	vertices[24] = green; //green
+	vertices[25] = blue; //blue
+}
 
 void Sprite::setTexture(ZZZ::Texture* spriteTexture)
 {

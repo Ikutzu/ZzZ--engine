@@ -57,6 +57,10 @@ void Device::update()
 
 void Device::setBackgroundColor(float red, float green, float blue)
 {
+	red =  red / 255;
+	green = green / 255;
+	blue = blue / 255;
+
 	backgroundColor[0] = red;
 	backgroundColor[1] = green;
 	backgroundColor[2] = blue;
