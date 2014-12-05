@@ -137,9 +137,13 @@ int main()
 		{
 			int x = std::rand() % 600;
 			int y = std::rand() % 800;
+			float tx = std::rand() % 512;
+			float ty = std::rand() % 512;
 			Sprite* koala = new Sprite(&koalaTexture, 128, 128);
 			koala->setPosition(x, y);
+			koala->setTextureCoordinates(0.0f, 0.0f, tx, ty);
 			koalaFarmi.push_back(koala);
+	
 		}
 
 		//Despawn Koala
