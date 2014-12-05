@@ -22,9 +22,10 @@ namespace ZZZ
 		void rotate(float angleInDegrees);
 		void setRotation(float angleInDegrees);
 		void setTexture(ZZZ::Texture* spriteTexture);
+		void setTextureCoordinates(float left, float top, float right, float bottom);
 		void setLayerDepth(int layerDepth);
 		void setID(int spriteID){ id = spriteID; }
-
+		
 		ZZZ::Texture* getTexture();
 		int getDepth();
 		int getID() { return id; };

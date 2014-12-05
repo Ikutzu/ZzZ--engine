@@ -4,8 +4,7 @@ using namespace ZZZ;
 
 Texture::Texture(std::string fileName)
 {
-	ResourceManager* tempRm = ResourceManager::instance();
-	createTexture(tempRm->load<TextureRes>(fileName));
+	createTexture(ResourceManager::instance()->load<TextureRes>(fileName));
 }
 
 Texture::~Texture()
@@ -15,6 +14,9 @@ Texture::~Texture()
 
 void Texture::createTexture(TextureRes* resource)
 {
+	width = resource->getWidth();
+	height = resource->getHeight();
+
 	glGenTextures(1, &index);
 	glBindTexture(GL_TEXTURE_2D, index);
 

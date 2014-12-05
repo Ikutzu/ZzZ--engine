@@ -13,12 +13,14 @@ namespace ZZZ
 		~Texture();
 
 		GLuint* getIndex(){ return &index; };
+		int getWidth(){ return width; };
+		int getHeight(){ return height; };
 
 	private:
 		void createTexture(TextureRes* resource);
 
 		GLuint index;
-
+		int width, height;
 	};
 }
 #endif

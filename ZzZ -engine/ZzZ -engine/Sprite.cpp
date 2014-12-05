@@ -195,6 +195,32 @@ void Sprite::setTexture(ZZZ::Texture* spriteTexture)
 	texture = spriteTexture;
 
 }
+void Sprite::setTextureCoordinates(float left, float top, float right, float bottom)
+{
+	float normWidth = 1.0f / (float)texture->getWidth();
+	float normHeight = 1.0f / (float)texture->getHeight();
+
+	float tempLeft, tempTop, tempRight, tempBottom;
+
+	tempLeft = normWidth * left;
+	tempTop = normHeight * top;
+	tempRight = normWidth * right;
+	tempBottom = normHeight * bottom;
+
+	vertices[5] = tempLeft;
+	vertices[6] = tempBottom;
+
+	vertices[12] = tempLeft;
+	vertices[13] = tempTop;
+
+	vertices[19] = tempRight;
+	vertices[20] = tempBottom;
+	
+	vertices[26] = tempRight;
+	vertices[27] = tempTop;
+
+	float stopper = 0;
+}
 int Sprite::getDepth()
 {
 	return depth;
