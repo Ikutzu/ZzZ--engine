@@ -117,33 +117,24 @@ void Sprite::setPosition(float x, float y)
 }
 void Sprite::setScale(float spriteScale)
 {
-	//Scales the sprite
 	scale = spriteScale;
-	vertices[1] = vertices[8] + (scaleY * scale * height); //y
-
-	vertices[14] = vertices[7] + (scaleX * scale * width); //x
-	vertices[15] = vertices[8] + (scaleY * scale * height); //y
-
-	vertices[21] = vertices[7] + (scaleX * scale * width); //x
-
-	originX = vertices[7] + width * scaleX * scale / 2;
-	originY = vertices[8] + height * scaleY * scale / 2;
+	vertices[0] = originX - width / 2 * scale * scaleX;
+	vertices[1] = originY + height / 2 * scale * scaleY;
+	vertices[7] = originX  - width / 2 * scale * scaleX;
+	vertices[8] = originY - height / 2 * scale * scaleY;
+	vertices[14] = originX + width / 2 * scale * scaleX;
+	vertices[15] = originY + height / 2 * scale * scaleY;
+	vertices[21] = originX + width / 2 * scale * scaleX;
+	vertices[22] = originY  - height / 2 * scale * scaleY;
+	setRotation(currentAngle);
 }
 void Sprite::setScale(float x, float y)
 {
 	//Scales the sprite
 	scaleX = x;	
 	scaleY = y;
-
-	vertices[1] = vertices[8] + (scaleY * scale * height); //y
-
-	vertices[14] = vertices[7] + (scaleX * scale * width); //x
-	vertices[15] = vertices[8] + (scaleY * scale * height); //y
-
-	vertices[21] = vertices[7] + (scaleX * scale * width); //x
-
-	originX = vertices[7] + width * scaleX * scale / 2;
-	originY = vertices[8] + height * scaleY * scale / 2;
+	setScale(scale);
+	
 }
 void Sprite::rotate(float angleInDegrees)
 {
@@ -194,30 +185,6 @@ void Sprite::setTexture(ZZZ::Texture* spriteTexture)
 {
 	texture = spriteTexture;
 
-}
-void Sprite::setTextureCoordinates(float left, float top, float right, float bottom)
-{
-	float normWidth = 1.0f / (float)texture->getWidth();
-	float normHeight = 1.0f / (float)texture->getHeight();
-
-	float tempLeft, tempTop, tempRight, tempBottom;
-
-	tempLeft = normWidth * left;
-	tempTop = normHeight * top;
-	tempRight = normWidth * right;
-	tempBottom = normHeight * bottom;
-
-	vertices[5] = tempLeft;
-	vertices[6] = tempBottom;
-
-	vertices[12] = tempLeft;
-	vertices[13] = tempTop;
-
-	vertices[19] = tempRight;
-	vertices[20] = tempBottom;
-	
-	vertices[26] = tempRight;
-	vertices[27] = tempTop;
 }
 int Sprite::getDepth()
 {
