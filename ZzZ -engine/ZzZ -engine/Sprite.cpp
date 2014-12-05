@@ -218,8 +218,6 @@ void Sprite::setTextureCoordinates(float left, float top, float right, float bot
 	
 	vertices[26] = tempRight;
 	vertices[27] = tempTop;
-
-	float stopper = 0;
 }
 int Sprite::getDepth()
 {
