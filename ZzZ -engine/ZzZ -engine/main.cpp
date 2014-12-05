@@ -34,14 +34,8 @@ int main()
 	float angle = 0;
 	while (testi.isRunning)
 	{
+		//start timer
 		timer.startDeltaTime();
-
-		// kursorin koordinaatit ikkunan suhteen
-		if (testi.input.isKeyDown(Key::Space))
-		{
-		}
-
-		// input pit‰‰ p‰ivitt‰‰ mahdollisimman pian viimeisen input-kutsun j‰lkeen
 		testi.input.update();
 
 		angle += 0.01 * timer.getDeltaTime();
@@ -49,11 +43,94 @@ int main()
 			angle -= 360;
 		sprite1.setRotation(angle);
 
-
-		if (testi.input.isKeyPressed(Key::Space))
+		//Move Up
+		if (testi.input.isKeyPressed(Key::W))
 		{
+
 		}
 
+		//Move Left
+		if (testi.input.isKeyPressed(Key::A))
+		{
+
+		}
+
+		//Move Down
+		if (testi.input.isKeyPressed(Key::S))
+		{
+
+		}
+
+		//Move Right
+		if (testi.input.isKeyPressed(Key::D))
+		{
+
+		}
+
+		//Rotate Counterclockwise
+		if (testi.input.isKeyPressed(Key::Q))
+		{
+
+		}
+
+		//Rotate Clockwise
+		if (testi.input.isKeyPressed(Key::E))
+		{
+
+		}
+
+		//Scale Up
+		if (testi.input.isKeyPressed(Key::R))
+		{
+
+		}
+
+		//Scale Down
+		if (testi.input.isKeyPressed(Key::F))
+		{
+
+		}
+
+		//Previous Texture
+		if (testi.input.isKeyPressed(Key::Z))
+		{
+
+		}
+
+		//Next Texture
+		if (testi.input.isKeyPressed(Key::X))
+		{
+
+		}
+
+		//Spawn Koala
+		if (testi.input.isKeyPressed(Key::C))
+		{
+
+		}
+
+		//Despawn Koala
+		if (testi.input.isKeyPressed(Key::MouseLeft))
+		{
+
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		//Do-things
 		testi.update();
 		timer.setDeltaTime();
 	}
