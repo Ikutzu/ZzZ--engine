@@ -16,6 +16,7 @@ namespace ZZZ
 	{
 	public:
 		void initialize(std::string wName, RECT wClientCoord);
+		void initialize(std::string wName, int width, int height);
 		void setBackgroundColor(float red, float green, float blue);
 		Texture* loadTexture(std::string textureName);
 		void update();

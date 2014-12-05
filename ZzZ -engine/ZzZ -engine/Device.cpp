@@ -18,7 +18,17 @@ void Device::initialize(std::string wName, RECT wClientCoord)
 
 	createBuffers();
 	createShader(wClientCoord);
+}
 
+void Device::initialize(std::string wName, int width, int height)
+{
+	RECT tempWClientCoord;
+	tempWClientCoord.left = 0;
+	tempWClientCoord.top = 0;
+	tempWClientCoord.right = width;
+	tempWClientCoord.bottom = height;
+
+	initialize(wName, tempWClientCoord);
 }
 
 void Device::update()
