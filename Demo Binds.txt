@@ -13,5 +13,7 @@ Z - Previous texture
 X - Next Texture
 
 C - Spawn random koala
+T - Remove all Koalas
 
 Mouse 1 - Blow up koala
+Mouse 3 - Random background color

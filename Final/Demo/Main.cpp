@@ -3,14 +3,11 @@ using namespace ZZZ;
 
 int main()
 {
-	RECT semmone;
-	semmone.left = 0;
-	semmone.top = 0;
-	int winH = semmone.bottom = 768;
-	int winW = semmone.right = 1024;
-
+	static const int winW = 1024;
+	static const int winH = 768;
+	
 	ZZZ::Device testi;
-	testi.initialize("akkuna", semmone);
+	testi.initialize("ZZZ Engine - Demo", winW, winH);
 	testi.update();
 	testi.setBackgroundColor(0.0f, 125.0f, 0.0f);
 
@@ -22,6 +19,7 @@ int main()
 	Texture explosions("explosions");
 
 	Sprite sprite1(&zzzTexture, 300, 450);
+	sprite1.setPosition(winW*0.5f - 300*0.5f, winH*0.5f - 450*0.5f);
 	sprite1.setLayerDepth(2);
 	std::vector<Sprite*> koalaFarmi;
 
@@ -154,6 +152,15 @@ int main()
 			}
 			koalaFarmi.shrink_to_fit();
 		}
+
+		//Remove all Koalas
+		if (testi.input.isKeyPressed(Key::T))
+		{
+			for (std::vector<Sprite*>::iterator i = koalaFarmi.begin(); i != koalaFarmi.end(); i++)
+				delete *i;
+			koalaFarmi.clear();
+		}
+
 
 		if (testi.input.isKeyPressed(Key::MouseMiddle))
 		{
