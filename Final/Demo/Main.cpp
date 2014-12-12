@@ -6,8 +6,8 @@ int main()
 	RECT semmone;
 	semmone.left = 0;
 	semmone.top = 0;
-	semmone.bottom = 600;
-	semmone.right = 800;
+	int winH = semmone.bottom = 768;
+	int winW = semmone.right = 1024;
 
 	ZZZ::Device testi;
 	testi.initialize("akkuna", semmone);
@@ -33,8 +33,8 @@ int main()
 		//start timer
 		timer.startDeltaTime();
 
-		angle = 0.03 * timer.getDeltaTime();
-		move = 0.1 * timer.getDeltaTime();
+		angle = 0.06 * timer.getDeltaTime();
+		move = 0.3 * timer.getDeltaTime();
 
 		//Move Up
 		if (testi.input.isKeyDown(Key::W))
@@ -165,8 +165,8 @@ int main()
 
 		}
 		{
-			int x = std::rand() % 600;
-			int y = std::rand() % 800;
+			int x = std::rand() % (winW - 128);
+			int y = std::rand() % (winH - 128);
 			float tx = std::rand() % 512;
 			float ty = std::rand() % 512;
 			float r = std::rand() % 255;
